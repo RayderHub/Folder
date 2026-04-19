@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <nav class="sidebar" th:fragment="lateralbar">
+        <div class="logo-area">
+            <h2 class="logo-text">JD.</h2>
+            <div class="jp-decoration">ビデオエディター</div>
+        </div>
+        
+        <ul class="nav-menu">
+            <li><a th:href="@{/}" class="nav-btn" th:classappend="${content == 'profile'} ? 'active' : ''">INICIO / PERFIL <span class="nav-line"></span></a></li>
+            <li><a th:href="@{/experience}" class="nav-btn" th:classappend="${content == 'experience'} ? 'active' : ''">EXPERIENCIA <span class="nav-line"></span></a></li>
+            <li><a th:href="@{/education}" class="nav-btn" th:classappend="${content == 'education'} ? 'active' : ''">EDUCACIÓN <span class="nav-line"></span></a></li>
+            <li><a th:href="@{/skills}" class="nav-btn" th:classappend="${content == 'skills'} ? 'active' : ''">HABILIDADES <span class="nav-line"></span></a></li>
+            <li><a th:href="@{/software}" class="nav-btn" th:classappend="${content == 'software'} ? 'active' : ''">SOFTWARE <span class="nav-line"></span></a></li>
+            <li><a th:href="@{/idioms}" class="nav-btn" th:classappend="${content == 'idioms'} ? 'active' : ''">IDIOMAS <span class="nav-line"></span></a></li>
+            <li><a th:href="@{/contact}" class="nav-btn" th:classappend="${content == 'contact_me'} ? 'active' : ''">CONTACTO <span class="nav-line"></span></a></li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <p>2026 © EDICIÓN<br>Y MONTAJE VISUAL</p>
+        </div>
+    </nav>
+</head>
+</html>
