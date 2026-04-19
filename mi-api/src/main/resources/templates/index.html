@@ -4,11 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job de la Vega - Portafolio</title>
-    <!-- Fuentes elegantes y minimalistas -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/css/portfolio.css}">
+    <!-- Fuentes: Kaushan Script para estilo artístico, Inter para texto -->
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    
+    <!-- CSS Específicos por Sección -->
+    <link rel="stylesheet" th:if="${content == 'profile'}" th:href="@{/css/sections/profile.css}">
+    <link rel="stylesheet" th:if="${content == 'experience'}" th:href="@{/css/sections/experience.css}">
+    <link rel="stylesheet" th:if="${content == 'skills'}" th:href="@{/css/sections/skills.css}">
+    <link rel="stylesheet" th:if="${content == 'videos'}" th:href="@{/css/sections/videos.css}">
+    <link rel="stylesheet" th:if="${content == 'education' || content == 'software' || content == 'idioms'}" th:href="@{/css/sections/grids.css}">
+    <link rel="stylesheet" th:if="${content == 'contact_me'}" th:href="@{/css/sections/profile.css}"> <!-- Comparte layout hero -->
 </head>
-<body>
+<body th:classappend="${content == 'videos'} ? 'bg-dark' : ''">
     <!-- Efecto de transición manga (cortes de pantalla) -->
     <div class="transition-slice top-slice"></div>
     <div class="transition-slice bottom-slice"></div>

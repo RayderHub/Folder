@@ -1,0 +1,33 @@
+/* Estilos específicos para la sección Experience */
+.experience-content {
+    position: relative;
+    padding-left: 40px;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--black);
+}
+
+.timeline-list li {
+    position: relative;
+    padding: 20px 0 20px 30px;
+    font-size: 1.3rem;
+    font-weight: 300;
+}
+
+.timeline-list li::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 28px;
+    width: 10px;
+    height: 10px;
+    background: var(--white);
+    border: 2px solid var(--black);
+    border-radius: 50%;
+}

@@ -1,0 +1,11 @@
+/* Estilos específicos para la sección Skills */
+.videos-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 50px;
+}
+
+.video-frame {
+    width: 100%;
+    height: 400px;
+}

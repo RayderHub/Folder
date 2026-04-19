@@ -1,0 +1,87 @@
+<section id="view-videos" class="view-panel active">
+    <!-- Contenedor principal de la sección -->
+    <div class="videos-layout">
+
+        <!-- Columna 1: Miniaturas Verticales -->
+        <div class="video-thumbnails stagger-enter">
+            <div class="thumb-box" onclick="selectVideo(this, 'REEL', 'Video informativo sobre videojuego', '10ak-X5WDUnR_zZPdM3NtRcBg1g6Hf4sH', '15EM15uIVM2Ht3wWdgyCG0nbvkemVX-2n')">
+                <div style="color: white; padding: 10px; font-size: 10px;">REEL 01</div>
+            </div>
+            <div class="thumb-box selected" onclick="selectVideo(this, 'EDICIÓN 02', 'Proyecto de edición personal', 'OTRO_ID_BRUTO', 'OTRO_ID_EDITADO')">
+                <div style="color: white; padding: 10px; font-size: 10px;">REEL 02</div>
+            </div>
+            <div class="thumb-box" onclick="selectVideo(this, 'SHORTS', 'Compilación de reels rápidos', 'ID_SHORTS_BRUTO', 'ID_SHORTS_EDITADO')">
+                <div style="color: white; padding: 10px; font-size: 10px;">SHORTS</div>
+            </div>
+        </div>
+
+        <!-- Columna 2: Línea Curva Manga -->
+        <div class="manga-curved-line stagger-enter"></div>
+
+        <!-- Columna 3: Información y Contenido -->
+        <div class="video-display-area">
+
+            <div class="video-info-header stagger-enter">
+                <h1 id="video-title" class="massive-title" style="font-size: 3rem; text-shadow: none;">REEL</h1>
+                <div id="video-desc" class="jp-decoration">Video informativo sobre videojuego</div>
+            </div>
+
+            <div class="comparison-grid">
+                <!-- Bloque Raw Video -->
+                <div class="comparison-block stagger-enter">
+                    <span class="label-manga">RAW VIDEO</span>
+                    <div class="video-container">
+                        <div class="blur-overlay"></div>
+                        <video id="raw-video-player" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                            <source src="https://drive.google.com/uc?export=download&id=10ak-X5WDUnR_zZPdM3NtRcBg1g6Hf4sH" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <!-- Bloque My Edition -->
+                <div class="comparison-block stagger-enter">
+                    <span class="label-manga">MY EDITION</span>
+                    <div class="video-container">
+                        <div class="blur-overlay"></div>
+                        <video id="edit-video-player" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                            <source src="https://drive.google.com/uc?export=download&id=15EM15uIVM2Ht3wWdgyCG0nbvkemVX-2n" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Script de interacción -->
+    <script>
+        function selectVideo(thumb, title, desc, rawId, editId) {
+            // 1. Animación visual de las miniaturas
+            document.querySelectorAll('.thumb-box').forEach(el => el.classList.remove('selected'));
+            thumb.classList.add('selected');
+            
+            // Efecto GSAP en la miniatura clicada
+            gsap.fromTo(thumb, {scale: 0.9}, {scale: 1, duration: 0.4, ease: "back.out(2)"});
+
+            // 2. Actualizar textos
+            document.getElementById('video-title').innerText = title;
+            document.getElementById('video-desc').innerText = desc;
+
+            // 3. Actualizar reproductores de video
+            const rawPlayer = document.getElementById('raw-video-player');
+            const editPlayer = document.getElementById('edit-video-player');
+
+            // Cambiamos el source y recargamos el video
+            if(rawId !== 'OTRO_ID_BRUTO') {
+                rawPlayer.src = `https://drive.google.com/uc?export=download&id=${rawId}`;
+                editPlayer.src = `https://drive.google.com/uc?export=download&id=${editId}`;
+                
+                rawPlayer.load();
+                editPlayer.load();
+                
+                // Animación de entrada suave para los nuevos videos
+                gsap.from('.comparison-block', {opacity: 0.5, y: 20, duration: 0.6, stagger: 0.1});
+            }
+        }
+    </script>
+</section>

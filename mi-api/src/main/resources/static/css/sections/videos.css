@@ -1,0 +1,142 @@
+/* Estilos para la sección de Videos - Estilo Seinen Gray */
+
+#view-videos {
+    background-color: #121212;
+    /* Gris carbón suave y elegante */
+    color: var(--white);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 30px 40px;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.videos-layout {
+    display: grid;
+    grid-template-columns: 180px 40px 1fr;
+    width: 100%;
+    height: 100%;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Columna de Miniaturas */
+.video-thumbnails {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.thumb-box {
+    width: 110px;
+    height: 60px;
+    border: 1px solid #2a2a2a;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: grayscale(1);
+    opacity: 0.4;
+    background: #1a1a1a;
+}
+
+.thumb-box.selected {
+    width: 160px;
+    height: 90px;
+    border: 1px solid var(--white);
+    filter: grayscale(0);
+    opacity: 1;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+}
+
+.thumb-box div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 10px;
+}
+
+/* Separador Curvo Rediseñado */
+.manga-curved-line {
+    background: linear-gradient(to bottom, transparent, #333, #666, #333, transparent);
+    width: 1px;
+    height: 70%;
+    opacity: 0.5;
+    transform: scaleX(10);
+}
+
+/* Área de Visualización (Ocupando más espacio) */
+.video-display-area {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-left: 60px;
+    padding-right: 60px;
+    /* Reducimos el vacío a la derecha */
+    justify-content: center;
+    width: 100%;
+}
+
+.video-info-header h1 {
+    color: var(--white);
+    font-size: 2.8rem;
+    text-shadow: none;
+    margin: 0;
+}
+
+.video-info-header .jp-decoration {
+    color: #888;
+    font-size: 0.95rem;
+}
+
+.comparison-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.label-manga {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1rem;
+    color: #aaa;
+    background: transparent;
+    border-bottom: 1px solid #333;
+    padding: 3px 10px;
+    width: fit-content;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.video-container {
+    width: 100%;
+    max-width: 900px;
+    /* Videos más imponentes */
+    max-height: 36vh;
+    aspect-ratio: 16 / 9;
+    background-color: #000;
+    border: 1px solid #222;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-container .blur-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 12%;
+    background: linear-gradient(to right, rgba(18, 18, 18, 0.9), transparent);
+    backdrop-filter: blur(4px);
+    z-index: 2;
+    pointer-events: none;
+}

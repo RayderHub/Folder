@@ -1,0 +1,11 @@
+/* Estilos para Educación, Software e Idiomas (Comparten Dual Grid) */
+.dual-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    height: 100%;
+}
+
+.grid-col {
+    position: relative;
+}
