@@ -1,20 +1,58 @@
 <section id="view-idioms" class="view-panel active">
-    <div class="section-header stagger-enter">
-        <h2 class="section-title">IDIOMAS</h2>
-        <div class="jp-decoration">言語</div>
-    </div>
-    <div class="dual-grid mt-40">
-        <div class="grid-col stagger-enter">
-            <div class="manga-frame" style="height: 300px; transform: rotate(-2deg);">
-                <span class="placeholder-text">[ WORLD MAP / LANGUAGES ]</span>
-            </div>
+
+    <!-- FRASE AMBIENTAL: SECUENCIA DINÁMICA (Tokyo Ghoul Style) -->
+    <div class="despair-container">
+        <!-- Ritmo acelerado para lectura fluida -->
+        <div class="despair-word" style="--tilt: -4deg; top: 12%; left: 8%; animation-delay: 0.5s;">Rather than</div>
+        <div class="despair-word" style="--tilt: 2deg; top: 40%; right: 46%; animation-delay: 1.3s;">a person</div>
+        <div class="despair-word" style="--tilt: 6deg; top: 48%; right: 10%; animation-delay: 2.1s;">who</div>
+
+        <!-- HURTS: Visibilidad rescatada -->
+        <div class="despair-word flicker-hurts" style="--tilt: -3deg; top: 68%; left: 12%; animation-delay: 2.9s;">hurts
         </div>
-        <div class="grid-col stagger-enter">
-            <ul class="minimal-list border-list">
-                <li style="font-size: 2rem;">ESPAÑOL <small>(Nativo)</small></li>
-                <li style="font-size: 2rem;">INGLÉS <small>(C1 Advanced)</small></li>
-                <li style="font-size: 2rem;">JAPONÉS <small>(N5 - Básico)</small></li>
-            </ul>
+
+        <div class="despair-word" style="--tilt: 4deg; bottom: 12%; right: 18%; animation-delay: 3.7s;">others</div>
+    </div>
+
+    <!-- EFECTO GLITCH ANALÓGICO (Controlado por CSS) -->
+    <div class="glitch-slices"></div>
+    <div class="glitch-noise"></div>
+
+    <!-- BLOQUE CENTRAL (MONITOR) - Sincronizado con el ritmo de las palabras -->
+    <div class="manga-monitor-ui">
+        <div class="monitor-top-bar">
+            <div class="status-info">DATA_STATUS: DECRYPTED // AREA_ID: LINGUISTICS</div>
+            <div class="rec-indicator">REC <span class="blink-dot">●</span></div>
+        </div>
+
+        <div class="dual-grid-centered">
+            <!-- LADO IZQUIERDO: CERTIFICADO Y BOTÓN -->
+            <div class="grid-col-flex-centered">
+                <div class="cert-display-skewed">
+                    <img th:src="@{/images/certificate.png}" alt="English Certificate">
+                </div>
+
+                <div class="btn-container">
+                    <a href="https://drive.google.com/file/d/1COqHBKiA-K4EujFcomjpHcVxD24Vo0eB/view?usp=sharing"
+                        target="_blank" class="monitor-action-btn">
+                        ACCESS_SYSTEM_FILE.PDF
+                    </a>
+                </div>
+            </div>
+
+            <!-- LADO DERECHO: IDIOMAS -->
+            <div class="grid-col">
+                <ul class="interactive-lang-list">
+                    <li class="lang-item">
+                        <span class="lang-main">INGLÉS</span>
+                        <span class="lang-detail">// INTERMEDIO-AVANZADO</span>
+                    </li>
+                    <li class="lang-item">
+                        <span class="lang-main">ESPAÑOL</span>
+                        <span class="lang-detail">// IDIOMA NATIVO</span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </section>

@@ -1,8 +1,11 @@
-/* Estilos para la sección de Videos - Estilo Seinen Gray */
+/* Estilos para la sección de Videos - Estilo Seinen Pro */
 
 #view-videos {
-    background-color: #121212;
-    /* Gris carbón suave y elegante */
+    background-color: #0a0a0a !important;
+    /* Forzamos el negro desde el inicio */
+    background-image:
+        radial-gradient(circle at 50% 50%, rgba(20, 20, 20, 0.5) 0%, #0a0a0a 100%),
+        url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.02' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3C/g%3E%3C/svg%3E");
     color: var(--white);
     position: absolute;
     top: 0;
@@ -14,6 +17,14 @@
     padding: 30px 40px;
     display: flex;
     box-sizing: border-box;
+    opacity: 1 !important;
+    /* Asegura visibilidad inmediata del fondo */
+}
+
+/* Preparamos los elementos para la animación stagger de GSAP */
+.stagger-enter {
+    opacity: 0;
+    transform: translateY(20px);
 }
 
 .videos-layout {
@@ -23,6 +34,8 @@
     height: 100%;
     gap: 10px;
     align-items: center;
+    position: relative;
+    z-index: 1;
 }
 
 /* Columna de Miniaturas */
@@ -37,22 +50,33 @@
 .thumb-box {
     width: 110px;
     height: 60px;
-    border: 1px solid #2a2a2a;
+    border: 1px solid #222;
     cursor: pointer;
     overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     filter: grayscale(1);
-    opacity: 0.4;
-    background: #1a1a1a;
+    opacity: 0.3;
+    background: #111;
+    position: relative;
+}
+
+.thumb-box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(230, 0, 0, 0.1));
 }
 
 .thumb-box.selected {
     width: 160px;
     height: 90px;
-    border: 1px solid var(--white);
+    border: 1px solid #e60000;
     filter: grayscale(0);
     opacity: 1;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(230, 0, 0, 0.3);
 }
 
 .thumb-box div {
@@ -61,82 +85,251 @@
     align-items: center;
     height: 100%;
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     font-size: 10px;
+    text-transform: uppercase;
 }
 
-/* Separador Curvo Rediseñado */
+/* Separador Curvo Pro */
 .manga-curved-line {
-    background: linear-gradient(to bottom, transparent, #333, #666, #333, transparent);
+    background: linear-gradient(to bottom, transparent, #e60000, #333, #e60000, transparent);
     width: 1px;
-    height: 70%;
-    opacity: 0.5;
-    transform: scaleX(10);
+    height: 60%;
+    opacity: 0;
+    /* Empezar invisible para la animación */
 }
 
-/* Área de Visualización (Ocupando más espacio) */
+/* Área de Visualización */
 .video-display-area {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    padding-left: 60px;
-    padding-right: 60px;
-    /* Reducimos el vacío a la derecha */
-    justify-content: center;
-    width: 100%;
+    height: 100vh;
+    padding: 30px 0;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    gap: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Texto ambiental de fondo (Estilo escalonado) */
+.background-phrase-container {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    height: 90vh;
+    /* Distribuir por casi todo el alto */
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* Espaciado automático equitativo */
+    z-index: 0;
+    pointer-events: none;
+}
+
+.phrase-word {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 6rem;
+    color: rgba(255, 255, 255, 0.185);
+    /* Más sutil por el tamaño extra */
+    text-transform: uppercase;
+    margin-left: var(--offset);
+    transform: rotate(var(--tilt));
+    /* Inclinación aleatoria */
+    line-height: 0.8;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.flicker-text {
+    animation: atmosphericFlicker 6s infinite;
+}
+
+@keyframes atmosphericFlicker {
+
+    0%,
+    18%,
+    22%,
+    25%,
+    53%,
+    57%,
+    100% {
+        opacity: 1;
+    }
+
+    20%,
+    24%,
+    55% {
+        opacity: 0.4;
+    }
+
+    21%,
+    23%,
+    54%,
+    56% {
+        opacity: 0.2;
+    }
+}
+
+.video-info-header {
+    flex-shrink: 0;
+    border-left: 4px solid #e60000;
+    padding-left: 20px;
+    position: relative;
+    z-index: 2;
 }
 
 .video-info-header h1 {
     color: var(--white);
-    font-size: 2.8rem;
-    text-shadow: none;
+    font-size: 3rem;
+    text-transform: uppercase;
+    font-family: 'Permanent Marker', cursive;
     margin: 0;
+    letter-spacing: -1px;
 }
 
 .video-info-header .jp-decoration {
-    color: #888;
-    font-size: 0.95rem;
+    color: #666;
+    font-size: 1rem;
+    margin-top: 5px;
 }
 
 .comparison-grid {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    width: 100%;
+    justify-content: center;
+    gap: 30px;
+    min-height: 0;
+    margin: 20px 40px;
+}
+
+.comparison-block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 
 .label-manga {
-    font-family: 'Permanent Marker', cursive;
-    font-size: 1rem;
-    color: #aaa;
-    background: transparent;
-    border-bottom: 1px solid #333;
-    padding: 3px 10px;
-    width: fit-content;
-    display: block;
-    margin-bottom: 5px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 0.75rem;
+    color: #444;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
 }
 
 .video-container {
+    flex: 1;
     width: 100%;
-    max-width: 900px;
-    /* Videos más imponentes */
-    max-height: 36vh;
-    aspect-ratio: 16 / 9;
+    max-width: 800px;
+    margin: 0 auto;
     background-color: #000;
     border: 1px solid #222;
     position: relative;
     overflow: hidden;
+    transition: all 0.3s ease;
 }
 
-.video-container .blur-overlay {
+.video-container:hover {
+    border-color: #444;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.video-container iframe {
     position: absolute;
-    left: 0;
+    width: 100% !important;
+    height: 100% !important;
     top: 0;
-    bottom: 0;
-    width: 12%;
-    background: linear-gradient(to right, rgba(18, 18, 18, 0.9), transparent);
-    backdrop-filter: blur(4px);
-    z-index: 2;
+    left: 0;
+}
+
+/* Botón flotante de Play sutil */
+.video-overlay-play {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    transition: all 0.4s ease;
+}
+
+.video-container:hover .video-overlay-play {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.is-playing .video-overlay-play {
+    opacity: 0;
     pointer-events: none;
+}
+
+/* Botones Manga Refinados */
+.control-btn {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transform: skew(-10deg);
+    transition: all 0.2s ease;
+    box-shadow: 4px 4px 0 #e60000;
+}
+
+.control-btn:hover {
+    background: #e60000;
+    color: #fff;
+    box-shadow: 2px 2px 0 #000;
+    transform: skew(-10deg) translateY(-2px);
+}
+
+/* Modo Cine */
+.cinema-mode-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.98);
+    backdrop-filter: blur(10px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.cinema-content {
+    width: 90%;
+    max-width: 1450px;
+    height: 85vh;
+    border: 1px solid #333;
+    position: relative;
+}
+
+.close-cinema {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    font-size: 1.2rem;
+    color: #666;
+    font-family: 'Permanent Marker', cursive;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-cinema:hover {
+    color: #e60000;
+}
+
+.bg-blur-active {
+    filter: grayscale(1) blur(5px);
+    opacity: 0.5;
 }

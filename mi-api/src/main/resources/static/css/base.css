@@ -172,6 +172,7 @@ ul {
 }
 
 .massive-title {
+    font-family: 'Kaushan Script', cursive;
     font-size: clamp(4rem, 8vw, 7rem);
     line-height: 0.9;
     margin-bottom: 30px;

@@ -1,21 +1,44 @@
 <section id="view-contact" class="view-panel active">
-    <div class="section-header stagger-enter">
-        <h2 class="section-title">CONTACTO</h2>
-        <div class="jp-decoration">連絡先</div>
-    </div>
-    <div class="hero-grid mt-40">
-        <div class="hero-text-side stagger-enter">
-            <h1 class="massive-title" style="font-size: 4rem;">¿TRABAJAMOS<br>JUNTOS?</h1>
-            <ul class="minimal-list mt-20" style="font-weight: 600;">
-                <li>Email: job@delavega.com</li>
-                <li>Insta: @job_editor</li>
-                <li>LinkedIn: /in/jobdelavega</li>
-            </ul>
+    <!-- Layout de Contacto -->
+    <div class="contact-layout">
+        
+        <!-- Cabecera de Sección -->
+        <div class="contact-header stagger-enter">
+            <h1 class="massive-title" style="font-size: 3.5rem; color: var(--black);">CONTACTO</h1>
+            <p class="subtitle">Escríbeme para colaboraciones o consultas.</p>
+            <div class="jp-decoration">コンタクトフォーム</div>
         </div>
-        <div class="hero-image-side stagger-enter" style="height: 300px;">
-            <div class="manga-frame" style="width: 100%; height: 100%;">
-                <span class="placeholder-text">[ CÓDIGO QR / ICONOS ]</span>
+
+        <!-- Formulario -->
+        <form id="contact-form" class="manga-form stagger-enter">
+            <div class="form-group">
+                <label class="label-manga">NOMBRE COMPLETO</label>
+                <input type="text" id="name" name="name" placeholder="¿Cómo te llamas?" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="label-manga">CORREO / TELÉFONO</label>
+                <input type="text" id="contact_info" name="contact_info" placeholder="correo@ejemplo.com o +52..." required>
+            </div>
+
+            <div class="form-group">
+                <label class="label-manga">¿EN QUÉ PUEDO AYUDARTE?</label>
+                <textarea id="message" name="message" rows="5" placeholder="Cuéntame tu idea, presupuesto o dudas..." required></textarea>
+            </div>
+
+            <button type="submit" id="submit-btn" class="submit-btn-manga">
+                ENVIAR MENSAJE <span class="btn-arrow">→</span>
+            </button>
+        </form>
+
+        <!-- Mensaje de Éxito -->
+        <div id="success-message" class="success-manga-box">
+            <div class="success-content">
+                <h2>¡LOGRADO!</h2>
+                <p>Tu mensaje ha sido enviado correctamente. Revisaré mi bandeja pronto.</p>
+                <div class="jp-decoration" style="margin-top: 20px;">ありがとうございました</div>
             </div>
         </div>
+
     </div>
 </section>

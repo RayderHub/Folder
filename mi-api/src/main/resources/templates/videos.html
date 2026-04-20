@@ -1,28 +1,34 @@
 <section id="view-videos" class="view-panel active">
-    <!-- Contenedor principal de la sección -->
-    <div class="videos-layout">
+    <!-- Overlay de Modo Cine (Lightbox) -->
+    <div id="cinema-overlay" class="cinema-mode-overlay" onclick="toggleCinema(false)">
+        <span class="close-cinema" onclick="toggleCinema(false)">CERRAR [X]</span>
+        <div class="cinema-content" onclick="event.stopPropagation()">
+            <iframe id="cinema-player" src="" frameborder="0" style="width:100%; height:100%;"
+                allow="autoplay; fullscreen"></iframe>
+        </div>
+    </div>
 
-        <!-- Columna 1: Miniaturas Verticales -->
-        <div class="video-thumbnails stagger-enter">
-            <div class="thumb-box" onclick="selectVideo(this, 'REEL', 'Video informativo sobre videojuego', '10ak-X5WDUnR_zZPdM3NtRcBg1g6Hf4sH', '15EM15uIVM2Ht3wWdgyCG0nbvkemVX-2n')">
-                <div style="color: white; padding: 10px; font-size: 10px;">REEL 01</div>
-            </div>
-            <div class="thumb-box selected" onclick="selectVideo(this, 'EDICIÓN 02', 'Proyecto de edición personal', 'OTRO_ID_BRUTO', 'OTRO_ID_EDITADO')">
-                <div style="color: white; padding: 10px; font-size: 10px;">REEL 02</div>
-            </div>
-            <div class="thumb-box" onclick="selectVideo(this, 'SHORTS', 'Compilación de reels rápidos', 'ID_SHORTS_BRUTO', 'ID_SHORTS_EDITADO')">
-                <div style="color: white; padding: 10px; font-size: 10px;">SHORTS</div>
-            </div>
+    <!-- Texto ambiental de fondo (Estilo escalonado y rotado) -->
+    <div class="background-phrase-container flicker-text">
+        <div class="phrase-word" style="--offset: 20px; --tilt: -5deg;">WHO</div>
+        <div class="phrase-word" style="--offset: 110px; --tilt: 3deg;">I</div>
+        <div class="phrase-word" style="--offset: 80px; --tilt: -8deg;">USED</div>
+        <div class="phrase-word" style="--offset: 130px; --tilt: 7deg;">TO</div>
+        <div class="phrase-word" style="--offset: 65px; --tilt: -4deg;">BE</div>
+    </div>
+
+    <div class="videos-layout" id="videos-layout-container">
+        <!-- Columna 1: Miniaturas -->
+        <div class="video-thumbnails stagger-enter" id="thumbnails-container">
+            <div style="color: #666; font-size: 10px; padding: 10px;">CARGANDO...</div>
         </div>
 
-        <!-- Columna 2: Línea Curva Manga -->
+        <!-- LINEA ROJA CON ANIMACIÓN RESTAURADA -->
         <div class="manga-curved-line stagger-enter"></div>
 
-        <!-- Columna 3: Información y Contenido -->
         <div class="video-display-area">
-
             <div class="video-info-header stagger-enter">
-                <h1 id="video-title" class="massive-title" style="font-size: 3rem; text-shadow: none;">REEL</h1>
+                <h1 id="video-title" class="massive-title" style="font-size: 2.5rem; text-shadow: none;">REEL</h1>
                 <div id="video-desc" class="jp-decoration">Video informativo sobre videojuego</div>
             </div>
 
@@ -30,58 +36,155 @@
                 <!-- Bloque Raw Video -->
                 <div class="comparison-block stagger-enter">
                     <span class="label-manga">RAW VIDEO</span>
-                    <div class="video-container">
-                        <div class="blur-overlay"></div>
-                        <video id="raw-video-player" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
-                            <source src="https://drive.google.com/uc?export=download&id=10ak-X5WDUnR_zZPdM3NtRcBg1g6Hf4sH" type="video/mp4">
-                        </video>
+                    <div class="video-container" id="container-raw">
+                        <div class="video-overlay-play" id="overlay-raw">
+                            <button class="control-btn" onclick="playManual('raw')">PLAY ▷</button>
+                            <button class="control-btn" onclick="toggleCinema(true, 'raw')">AUMENTAR ⛶</button>
+                        </div>
+                        <iframe id="raw-video-player" data-id="" src="" frameborder="0" allow="autoplay; fullscreen"
+                            style="width: 100%; height: 100%;">
+                        </iframe>
                     </div>
                 </div>
 
                 <!-- Bloque My Edition -->
                 <div class="comparison-block stagger-enter">
                     <span class="label-manga">MY EDITION</span>
-                    <div class="video-container">
-                        <div class="blur-overlay"></div>
-                        <video id="edit-video-player" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
-                            <source src="https://drive.google.com/uc?export=download&id=15EM15uIVM2Ht3wWdgyCG0nbvkemVX-2n" type="video/mp4">
-                        </video>
+                    <div class="video-container" id="container-edit">
+                        <div class="video-overlay-play" id="overlay-edit">
+                            <button class="control-btn" onclick="playManual('edit')">PLAY ▷</button>
+                            <button class="control-btn" onclick="toggleCinema(true, 'edit')">AUMENTAR ⛶</button>
+                        </div>
+                        <iframe id="edit-video-player" data-id="" src="" frameborder="0" allow="autoplay; fullscreen"
+                            style="width: 100%; height: 100%;">
+                        </iframe>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <!-- Script de interacción -->
     <script>
-        function selectVideo(thumb, title, desc, rawId, editId) {
-            // 1. Animación visual de las miniaturas
-            document.querySelectorAll('.thumb-box').forEach(el => el.classList.remove('selected'));
-            thumb.classList.add('selected');
-            
-            // Efecto GSAP en la miniatura clicada
-            gsap.fromTo(thumb, {scale: 0.9}, {scale: 1, duration: 0.4, ease: "back.out(2)"});
+        // Configuración de Supabase
+        const SB_URL = 'https://cwjbpiuqvxiubctdyhsc.supabase.co';
+        const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3amJwaXVxdnhpdWJjdGR5aHNjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2MjQ0MTksImV4cCI6MjA5MjIwMDQxOX0.ICnz4xSdJ_l-XUX9xEVecG23lEeKtUisFPLQKS6M6nY';
 
-            // 2. Actualizar textos
-            document.getElementById('video-title').innerText = title;
-            document.getElementById('video-desc').innerText = desc;
+        let videoData = [];
 
-            // 3. Actualizar reproductores de video
-            const rawPlayer = document.getElementById('raw-video-player');
-            const editPlayer = document.getElementById('edit-video-player');
+        async function fetchVideos() {
+            try {
+                const response = await fetch(`${SB_URL}/rest/v1/videos?select=*&order=order_index.asc`, {
+                    headers: {
+                        'apikey': SB_KEY,
+                        'Authorization': `Bearer ${SB_KEY}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
 
-            // Cambiamos el source y recargamos el video
-            if(rawId !== 'OTRO_ID_BRUTO') {
-                rawPlayer.src = `https://drive.google.com/uc?export=download&id=${rawId}`;
-                editPlayer.src = `https://drive.google.com/uc?export=download&id=${editId}`;
-                
-                rawPlayer.load();
-                editPlayer.load();
-                
-                // Animación de entrada suave para los nuevos videos
-                gsap.from('.comparison-block', {opacity: 0.5, y: 20, duration: 0.6, stagger: 0.1});
+                videoData = await response.json();
+
+                if (videoData && videoData.length > 0) {
+                    renderThumbnails();
+                } else {
+                    document.getElementById('thumbnails-container').innerHTML = '<div style="color:red; font-size:10px; padding:10px;">SIN DATOS</div>';
+                }
+            } catch (error) {
+                console.error("Error cargando videos:", error);
             }
         }
+
+        function renderThumbnails() {
+            const container = document.getElementById('thumbnails-container');
+            if (!container) return;
+            container.innerHTML = '';
+
+            const seenTitles = new Set();
+
+            videoData.forEach((vid, index) => {
+                if (seenTitles.has(vid.title)) return;
+                seenTitles.add(vid.title);
+
+                const box = document.createElement('div');
+                box.className = `thumb-box ${container.children.length === 0 ? 'selected' : ''}`;
+                box.onclick = () => updateView(box, vid);
+                box.innerHTML = `<div>${vid.title}</div>`;
+                container.appendChild(box);
+            });
+
+            if (container.firstChild) {
+                // Carga inicial sin animación de salida
+                const firstVid = videoData.find(v => v.title === container.firstChild.innerText);
+                applyVideoChanges(container.firstChild, firstVid);
+            }
+        }
+
+        function updateView(thumb, vid) {
+            // Animación de salida cinematográfica
+            gsap.to(['#video-title', '#video-desc', '.comparison-grid'], {
+                opacity: 0,
+                y: 10,
+                duration: 0.3,
+                stagger: 0.05,
+                onComplete: () => {
+                    applyVideoChanges(thumb, vid);
+                    // Animación de entrada suave
+                    gsap.to(['#video-title', '#video-desc', '.comparison-grid'], {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.5,
+                        stagger: 0.1,
+                        ease: "power2.out"
+                    });
+                }
+            });
+        }
+
+        function applyVideoChanges(thumb, vid) {
+            document.querySelectorAll('.thumb-box').forEach(el => el.classList.remove('selected'));
+            thumb.classList.add('selected');
+
+            document.getElementById('video-title').innerText = vid.title;
+            document.getElementById('video-desc').innerText = vid.description;
+
+            const rawFrame = document.getElementById('raw-video-player');
+            const editFrame = document.getElementById('edit-video-player');
+
+            rawFrame.setAttribute('data-id', vid.raw_video_id);
+            editFrame.setAttribute('data-id', vid.edit_video_id);
+
+            rawFrame.src = `https://www.youtube.com/embed/${vid.raw_video_id}?autoplay=0&controls=1&rel=0&modestbranding=1`;
+            editFrame.src = `https://www.youtube.com/embed/${vid.edit_video_id}?autoplay=0&controls=1&rel=0&modestbranding=1`;
+
+            document.querySelectorAll('.video-container').forEach(c => c.classList.remove('is-playing'));
+        }
+
+        function playManual(type) {
+            const container = document.getElementById('container-' + type);
+            const player = document.getElementById(type + '-video-player');
+            const videoId = player.getAttribute('data-id');
+
+            container.classList.add('is-playing');
+            player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1`;
+        }
+
+        function toggleCinema(show, type = '') {
+            const overlay = document.getElementById('cinema-overlay');
+            const cinemaPlayer = document.getElementById('cinema-player');
+            const layout = document.getElementById('videos-layout-container');
+
+            if (show) {
+                const player = document.getElementById(type + '-video-player');
+                const videoId = player.getAttribute('data-id');
+                cinemaPlayer.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&rel=0`;
+                overlay.style.display = 'flex';
+                layout.classList.add('bg-blur-active');
+            } else {
+                overlay.style.display = 'none';
+                cinemaPlayer.src = '';
+                layout.classList.remove('bg-blur-active');
+            }
+        }
+
+        fetchVideos();
     </script>
 </section>

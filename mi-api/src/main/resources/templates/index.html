@@ -13,8 +13,9 @@
     <link rel="stylesheet" th:if="${content == 'experience'}" th:href="@{/css/sections/experience.css}">
     <link rel="stylesheet" th:if="${content == 'skills'}" th:href="@{/css/sections/skills.css}">
     <link rel="stylesheet" th:if="${content == 'videos'}" th:href="@{/css/sections/videos.css}">
-    <link rel="stylesheet" th:if="${content == 'education' || content == 'software' || content == 'idioms'}" th:href="@{/css/sections/grids.css}">
-    <link rel="stylesheet" th:if="${content == 'contact_me'}" th:href="@{/css/sections/profile.css}"> <!-- Comparte layout hero -->
+    <link rel="stylesheet" th:if="${content == 'idioms'}" th:href="@{/css/sections/idioms.css}">
+    <link rel="stylesheet" th:if="${content == 'education' || content == 'software'}" th:href="@{/css/sections/grids.css}">
+    <link rel="stylesheet" th:if="${content == 'contact_me'}" th:href="@{/css/sections/contact.css}"> 
 </head>
 <body th:classappend="${content == 'videos'} ? 'bg-dark' : ''">
     <!-- Efecto de transición manga (cortes de pantalla) -->

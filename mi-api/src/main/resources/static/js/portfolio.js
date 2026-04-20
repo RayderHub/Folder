@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Ejecutar la animación de "Abrir Cortinas" al cargar la página
     playInitialTransition();
-    
+
     // 3. Interceptar clics en la navegación para la animación de "Cerrar Cortinas"
     setupLinkInterception();
 });
@@ -17,13 +17,13 @@ function playInitialTransition() {
 
     // Empezamos con las cortinas cerradas (cubriendo la pantalla)
     gsap.set([topSlice, bottomSlice], { scaleY: 1 });
-    
+
     // 1. Abrimos las cortinas
     gsap.to([topSlice, bottomSlice], {
         scaleY: 0,
         duration: 0.8,
         ease: "power4.inOut",
-        delay: 0.3, 
+        delay: 0.3,
         onComplete: () => {
             // 2. Aparecemos el panel principal suavemente
             if (activeView) {
@@ -162,7 +162,7 @@ function animateTransition(currentView, targetView, callback) {
             // 2. Cambiamos las vistas detrás del telón
             currentView.classList.remove('active');
             targetView.classList.add('active');
-            
+
             // Re-esconder los elementos de la nueva vista temporalmente
             gsap.set(targetView.querySelectorAll('.stagger-enter'), { y: 50, opacity: 0 });
 
@@ -198,24 +198,84 @@ function getDummyData() {
         name: "Job de la Vega",
         profession: "Editor de Video",
         experience: [
-            "<strong>Editor Principal</strong> - Agencia Creativa Visual (2020-Presente)", 
+            "<strong>Editor Principal</strong> - Agencia Creativa Visual (2020-Presente)",
             "<strong>Montajista Freelance</strong> - Creadores de Contenido (2018-2020)",
             "<strong>Operador de Postproducción</strong> - Productora Local (2017)"
         ],
         videoTypes: [
-            "Formatos dinámicos (YouTube/Twitch/TikTok)", 
-            "Montaje narrativo y cortometrajes", 
-            "Estética Manga / AMV experimental", 
+            "Formatos dinámicos (YouTube/Twitch/TikTok)",
+            "Montaje narrativo y cortometrajes",
+            "Estética Manga / AMV experimental",
             "Colorización y Grading cinematográfico"
         ],
         studies: [
-            "Licenciatura en Comunicación Audiovisual", 
+            "Licenciatura en Comunicación Audiovisual",
             "Diplomado Técnico en Artes y Cine"
         ],
         courses: [
-            "Adobe Master Collection: Postproducción", 
-            "DaVinci Resolve - Advanced Color Grading", 
+            "Adobe Master Collection: Postproducción",
+            "DaVinci Resolve - Advanced Color Grading",
             "Narrativa Visual Avanzada"
         ]
     };
 }
+
+// ==========================================
+// INTEGRACIÓN CON SUPABASE (CONTACTO)
+// ==========================================
+
+// REEMPLAZA ESTOS VALORES CON LOS DE TU PROYECTO (Settings -> API en Supabase)
+const SUPABASE_URL = 'https://cwjbpiuqvxiubctdyhsc.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3amJwaXVxdnhpdWJjdGR5aHNjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2MjQ0MTksImV4cCI6MjA5MjIwMDQxOX0.ICnz4xSdJ_l-XUX9xEVecG23lEeKtUisFPLQKS6M6nY';
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Escuchar el envío del formulario usando delegación por si la vista cambia
+    document.addEventListener('submit', async (e) => {
+        if (e.target && e.target.id === 'contact-form') {
+            e.preventDefault();
+
+            const btn = document.getElementById('submit-btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "ENVIANDO...";
+            btn.disabled = true;
+
+            const formData = {
+                name: document.getElementById('name').value,
+                contact_info: document.getElementById('contact_info').value,
+                message: document.getElementById('message').value
+            };
+
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/messages`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_KEY,
+                        'Authorization': `Bearer ${SUPABASE_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    const successBox = document.getElementById('success-message');
+                    document.getElementById('contact-form').style.display = 'none';
+                    successBox.style.display = 'block';
+
+                    // Animación de éxito fluida sin parpadeos
+                    gsap.fromTo(successBox, 
+                        { rotate: -5, scale: 0.5, opacity: 0 }, 
+                        { rotate: 0, scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.7)" }
+                    );
+                } else {
+                    throw new Error("Error en la respuesta de Supabase");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Hubo un problema al enviar el mensaje. Verifica tu URL y API KEY de Supabase.");
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+    });
+});
