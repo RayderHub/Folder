@@ -1,16 +1,71 @@
+<!-- Video de fondo específico de Habilidades -->
+<video class="video-background" autoplay muted loop playsinline>
+    <source th:src="@{/videos/kan2.mp4}" type="video/mp4">
+</video>
+
+<!-- Capa cinemática para legibilidad -->
+<div class="video-overlay"></div>
+
 <section id="view-skills" class="view-panel active">
-    <div class="section-header stagger-enter">
-        <h2 class="section-title">HABILIDADES</h2>
-        <div class="jp-decoration">スキル</div>
-    </div>
-    <div class="videos-grid mt-40">
-        <div class="manga-frame video-frame stagger-enter">
-            <span class="placeholder-text">[ DEMO REEL / SKILLS VISUAL ]</span>
+    <div class="skills-container">
+
+        <!-- Cabecera de Sección -->
+        <div class="skills-header stagger-enter">
+            <h1 class="massive-title" style="font-size: 3.5rem;">HABILIDADES</h1>
+            <div class="jp-decoration">CAPACIDADES_TÉCNICAS</div>
         </div>
-        <div class="skills-list stagger-enter">
-            <ul id="video-types-list" class="minimal-list">
-                <!-- Cargado por JS/API -->
-            </ul>
+
+        <!-- Grid de 4 Secciones -->
+        <div class="skills-grid">
+
+            <!-- 01. EDICIÓN DE VIDEO -->
+            <div class="skill-card stagger-enter">
+                <div class="card-num">01</div>
+                <h2 class="card-title">EDICIÓN DE VIDEO</h2>
+                <ul class="skill-list">
+                    <li>Narrativa audiovisual avanzada</li>
+                    <li>Montaje rítmico y dinámico</li>
+                    <li>Corrección de color (Color Grading)</li>
+                    <li>Diseño sonoro y mezcla de audio</li>
+                </ul>
+            </div>
+
+            <!-- 02. DISEÑO DIGITAL -->
+            <div class="skill-card stagger-enter">
+                <div class="card-num">02</div>
+                <h2 class="card-title">DISEÑO</h2>
+                <ul class="skill-list">
+                    <li>Composición 2.5D y Motion Graphics</li>
+                    <li>Creación de miniaturas</li>
+                    <li>Identidad visual y logotipos</li>
+                    <li>Retoque fotográfico avanzado</li>
+                </ul>
+            </div>
+
+            <!-- 03. DESARROLLO WEB -->
+            <div class="skill-card stagger-enter">
+                <div class="card-num">03</div>
+                <h2 class="card-title">DESARROLLO WEB</h2>
+                <ul class="skill-list">
+                    <li>Interfaces modernas (UI/UX)</li>
+                    <li>Arquitectura de sitios responsivos</li>
+                    <li>Integración de APIs y bases de datos</li>
+                    <li>Java/Python</li>
+                </ul>
+            </div>
+
+            <!-- 04. TRATO AL CLIENTE -->
+            <div class="skill-card stagger-enter">
+                <div class="card-num">04</div>
+                <h2 class="card-title">TRATO AL CLIENTE</h2>
+                <ul class="skill-list">
+                    <li>Comunicación asertiva y clara (ingles/español)</li>
+                    <li>Gestión de proyectos y tiempos</li>
+                    <li>Identificar debilidades del cliente</li>
+                    <li>Enfoque centrado en resultados</li>
+                </ul>
+            </div>
+
         </div>
     </div>
 </section>

@@ -1,11 +1,124 @@
-/* Estilos específicos para la sección Skills */
-.videos-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 50px;
+/* Estilos específicos para la sección Habilidades */
+
+.skills-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 10;
 }
 
-.video-frame {
+.skills-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    perspective: 1000px;
+}
+
+/* TARJETAS DE HABILIDADES */
+.skill-card {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-left: 4px solid var(--red);
+    padding: 40px;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.skill-card:hover {
+    transform: translateY(-10px) rotateX(2deg);
+    background: rgba(0, 0, 0, 0.6);
+    border-left-width: 10px;
+    box-shadow: 0 30px 60px rgba(230, 0, 0, 0.1);
+}
+
+.card-num {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 0.9rem;
+    color: var(--red);
+    opacity: 0.6;
+    margin-bottom: 15px;
+    letter-spacing: 4px;
+}
+
+.card-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 25px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+}
+
+.skill-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.skill-list li {
+    font-family: 'Inter', sans-serif;
+    color: #cecccc;
+    font-size: 1.05rem;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.skill-list li::before {
+    content: '◈';
+    color: var(--red);
+    margin-right: 15px;
+    font-size: 0.8rem;
+}
+
+.skill-list li:hover {
+    color: #fff;
+    transform: translateX(10px);
+}
+
+/* VÍDEO Y OVERLAY (COHERENCIA GLOBAL) */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 400px;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(5, 5, 5, 0.8) 100%),
+                rgba(0, 0, 0, 0.2); 
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* RESPONSIVO */
+@media (max-width: 900px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .massive-title {
+        font-size: 2.5rem !important;
+    }
 }
