@@ -162,8 +162,15 @@ body {
     will-change: transform;
 }
 
-.top-slice { top: 0; transform: translateY(-105%); }
-.bottom-slice { bottom: 0; transform: translateY(105%); }
+.top-slice {
+    top: 0;
+    transform: translateY(0); /* Cerrado por defecto */
+}
+
+.bottom-slice {
+    bottom: 0;
+    transform: translateY(0); /* Cerrado por defecto */
+}
 
 /* --- ENTRADAS --- */
 .stagger-enter {

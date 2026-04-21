@@ -1,14 +1,36 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<html xmlns:th="http://www.thymeleaf.org" lang="es" style="background-color: #050505;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+
+    <!-- 1. CSS CRÍTICO (INLINE): Máxima prioridad absoluta para evitar parpadeos -->
+    <style>
+        html, body { background-color: #050505 !important; color: white; }
+        body { background-color: transparent !important; } /* Para permitir videos z-index -1 */
+        .transition-slice { 
+            background-color: #050505; 
+            position: fixed; 
+            left: 0; 
+            width: 100vw; 
+            height: 52vh; 
+            z-index: 99999; 
+            pointer-events: none;
+        }
+        .top-slice { top: 0; transform: translateY(0); }
+        .bottom-slice { bottom: 0; transform: translateY(0); }
+    </style>
+
     <title>Job de la Vega - Portafolio</title>
-    <!-- Fuentes: Kaushan Script para estilo artístico, Inter para texto -->
+    
+    <!-- 2. Fuentes externas -->
     <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- 3. CSS General -->
     <link rel="stylesheet" th:href="@{/css/base.css}">
     
-    <!-- CSS Específicos por Sección -->
+    <!-- 4. CSS Específicos por Sección -->
     <link rel="stylesheet" th:if="${content == 'profile'}" th:href="@{/css/sections/profile.css}">
     <link rel="stylesheet" th:if="${content == 'experience'}" th:href="@{/css/sections/experience.css}">
     <link rel="stylesheet" th:if="${content == 'skills'}" th:href="@{/css/sections/skills.css}">
@@ -18,24 +40,22 @@
     <link rel="stylesheet" th:if="${content == 'education'}" th:href="@{/css/sections/grids.css}">
     <link rel="stylesheet" th:if="${content == 'contact_me'}" th:href="@{/css/sections/contact.css}"> 
 </head>
-<body th:classappend="${content == 'videos' || content == 'software' || content == 'idioms'} ? 'bg-dark' : ''">
+<body style="background-color: transparent !important;">
     <!-- Efecto de transición manga (cortes de pantalla) -->
     <div class="transition-slice top-slice"></div>
     <div class="transition-slice bottom-slice"></div>
 
     <div class="app-layout">
-        
         <!-- Barra lateral (Fragmento) -->
         <div th:replace="~{fragments/fragment-lateralbar :: lateralbar}"></div>
 
         <!-- Área de contenido principal -->
         <main class="main-content">
-            <!-- El controlador inyectará aquí el template correspondiente -->
             <div th:replace="~{${content}}"></div>
         </main>
     </div>
 
-    <!-- Cargar scripts -->
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script th:src="@{/js/portfolio.js}"></script>
 </body>
