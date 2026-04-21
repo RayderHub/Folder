@@ -15,14 +15,16 @@ function playInitialTransition() {
     const bottomSlice = document.querySelector('.bottom-slice');
     const activeView = document.querySelector('.view-panel.active');
 
-    // Empezamos con las cortinas cerradas (cubriendo la pantalla)
-    gsap.set([topSlice, bottomSlice], { scaleY: 1 });
+    // Empezamos con las cortinas cerradas (centro de la pantalla)
+    gsap.set(topSlice, { translateY: "0%" });
+    gsap.set(bottomSlice, { translateY: "0%" });
 
-    // 1. Abrimos las cortinas
-    gsap.to([topSlice, bottomSlice], {
-        scaleY: 0,
-        duration: 0.8,
-        ease: "power4.inOut",
+    // 1. Abrimos las cortinas deslizándolas hacia afuera
+    gsap.to(topSlice, { translateY: "-105%", duration: 0.8, ease: "power4.inOut", delay: 0.3 });
+    gsap.to(bottomSlice, { 
+        translateY: "105%", 
+        duration: 0.8, 
+        ease: "power4.inOut", 
         delay: 0.3,
         onComplete: () => {
             // 2. Aparecemos el panel principal suavemente
@@ -51,18 +53,17 @@ function setupLinkInterception() {
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            // Si es un enlace real y no tiene la clase active
             if (link.href && !link.classList.contains('active')) {
-                e.preventDefault(); // Detenemos la navegación inmediata
+                e.preventDefault();
                 const destination = link.href;
 
-                // Animamos el cierre de cortinas
-                gsap.to([topSlice, bottomSlice], {
-                    scaleY: 1,
-                    duration: 0.6,
+                // Animamos el cierre de cortinas deslizándolas al centro
+                gsap.to(topSlice, { translateY: "0%", duration: 0.6, ease: "power4.inOut" });
+                gsap.to(bottomSlice, { 
+                    translateY: "0%", 
+                    duration: 0.6, 
                     ease: "power4.inOut",
                     onComplete: () => {
-                        // Cuando las cortinas cubren todo, navegamos
                         window.location.href = destination;
                     }
                 });
@@ -127,20 +128,17 @@ function setupNavigation() {
     buttons.forEach(btn => {
         btn.addEventListener('click', () => {
             if (isAnimating) return;
-            if (btn.classList.contains('active')) return; // Ya estamos aquí
+            if (btn.classList.contains('active')) return;
 
             isAnimating = true;
 
-            // Actualizar estado botones
             buttons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            // Encontrar vista actual y objetivo
             const targetId = btn.getAttribute('data-target');
             const targetView = document.getElementById(targetId);
             const currentView = Array.from(views).find(v => v.classList.contains('active'));
 
-            // Iniciar transición genial estilo corte
             animateTransition(currentView, targetView, () => {
                 isAnimating = false;
             });
@@ -148,40 +146,44 @@ function setupNavigation() {
     });
 }
 
-// Animación de transición (estilo corte transversal)
 function animateTransition(currentView, targetView, callback) {
     const topSlice = document.querySelector('.top-slice');
     const bottomSlice = document.querySelector('.bottom-slice');
 
-    // 1. Las cortinas tapan la pantalla
-    gsap.to([topSlice, bottomSlice], {
-        scaleY: 1.05,
-        duration: 0.6,
+    // 1. Deslizamos cortinas al centro para tapar todo
+    gsap.to(topSlice, { translateY: "0%", duration: 0.5, ease: "power4.inOut" });
+    gsap.to(bottomSlice, { 
+        translateY: "0%", 
+        duration: 0.5, 
         ease: "power4.inOut",
         onComplete: () => {
             // 2. Cambiamos las vistas detrás del telón
             currentView.classList.remove('active');
             targetView.classList.add('active');
 
-            // Re-esconder los elementos de la nueva vista temporalmente
+            // Aseguramos invisibilidad absoluta de la nueva sección
+            gsap.set(targetView, { opacity: 0 });
             gsap.set(targetView.querySelectorAll('.stagger-enter'), { y: 50, opacity: 0 });
 
-            // 3. Abrir telón
-            gsap.to([topSlice, bottomSlice], {
-                scaleY: 0,
-                duration: 0.6,
-                ease: "power4.inOut",
-                onComplete: () => {
-                    // 4. Animar entrada de los contenidos de la nueva vista
-                    animateViewIn(targetView);
-                    callback();
-                }
-            });
+            // 3. PAUSA DE SEGURIDAD (200ms) - Tiempo de renderizado tranquilo
+            setTimeout(() => {
+                // 4. Abrir telón deslizando hacia afuera
+                gsap.to(topSlice, { translateY: "-105%", duration: 0.6, ease: "power4.out" });
+                gsap.to(bottomSlice, { 
+                    translateY: "105%", 
+                    duration: 0.6, 
+                    ease: "power4.out",
+                    onComplete: () => {
+                        // 5. Animar entrada de los contenidos
+                        animateViewIn(targetView);
+                        callback();
+                    }
+                });
+            }, 200);
         }
     });
 }
 
-// Animación fluida de entrada de los elementos
 function animateViewIn(view) {
     const elements = view.querySelectorAll('.stagger-enter');
     gsap.to(elements, {
@@ -219,63 +221,3 @@ function getDummyData() {
         ]
     };
 }
-
-// ==========================================
-// INTEGRACIÓN CON SUPABASE (CONTACTO)
-// ==========================================
-
-// REEMPLAZA ESTOS VALORES CON LOS DE TU PROYECTO (Settings -> API en Supabase)
-const SUPABASE_URL = 'https://cwjbpiuqvxiubctdyhsc.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3amJwaXVxdnhpdWJjdGR5aHNjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2MjQ0MTksImV4cCI6MjA5MjIwMDQxOX0.ICnz4xSdJ_l-XUX9xEVecG23lEeKtUisFPLQKS6M6nY';
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Escuchar el envío del formulario usando delegación por si la vista cambia
-    document.addEventListener('submit', async (e) => {
-        if (e.target && e.target.id === 'contact-form') {
-            e.preventDefault();
-
-            const btn = document.getElementById('submit-btn');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = "ENVIANDO...";
-            btn.disabled = true;
-
-            const formData = {
-                name: document.getElementById('name').value,
-                contact_info: document.getElementById('contact_info').value,
-                message: document.getElementById('message').value
-            };
-
-            try {
-                const response = await fetch(`${SUPABASE_URL}/rest/v1/messages`, {
-                    method: 'POST',
-                    headers: {
-                        'apikey': SUPABASE_KEY,
-                        'Authorization': `Bearer ${SUPABASE_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=minimal'
-                    },
-                    body: JSON.stringify(formData)
-                });
-
-                if (response.ok) {
-                    const successBox = document.getElementById('success-message');
-                    document.getElementById('contact-form').style.display = 'none';
-                    successBox.style.display = 'block';
-
-                    // Animación de éxito fluida sin parpadeos
-                    gsap.fromTo(successBox, 
-                        { rotate: -5, scale: 0.5, opacity: 0 }, 
-                        { rotate: 0, scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.7)" }
-                    );
-                } else {
-                    throw new Error("Error en la respuesta de Supabase");
-                }
-            } catch (error) {
-                console.error("Error:", error);
-                alert("Hubo un problema al enviar el mensaje. Verifica tu URL y API KEY de Supabase.");
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            }
-        }
-    });
-});

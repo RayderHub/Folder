@@ -1,0 +1,300 @@
+/* Diseño de Consola de Software - Estética Seinen/Tech / REORGANIZADO */
+
+#view-software {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #050505 !important;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    z-index: 100 !important;
+}
+
+/* --- FONDO DINÁMICO --- */
+.software-bg-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background-color: #050505;
+}
+
+.software-bg-preview::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/b/b1/Noise_with_alpha.png');
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.software-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(50px) brightness(0.2);
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out, transform 2.5s ease-out;
+    transform: scale(1.2);
+}
+
+.software-bg-image.active {
+    opacity: 0.55;
+    transform: scale(1);
+}
+
+.software-grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    background-size: 80px 80px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* --- LAYOUT DE CONTENIDO --- */
+.software-container {
+    position: relative;
+    z-index: 5;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 80px 8%;
+}
+
+.software-main {
+    display: flex;
+    flex: 1;
+    gap: 80px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* --- PANEL DE INFORMACIÓN (IZQUIERDA) --- */
+.software-info-panel {
+    flex: 1.2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-right: 12%;
+}
+
+.software-info-bg {
+    position: absolute;
+    top: -10%;
+    left: -40%;
+    width: 150%;
+    height: 120%;
+    z-index: -1;
+    pointer-events: none;
+    mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+}
+
+.software-info-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    filter: brightness(0.8) contrast(1.1);
+    transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    transform: scale(0.98);
+}
+
+.software-info-bg img.active {
+    opacity: 0.8;
+    transform: scale(1);
+}
+
+.info-content-wrapper {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    animation: floatingText 8s ease-in-out infinite;
+    padding-top: -200px;
+}
+
+/* ESTRUCTURA DE LOGO CON ESCALADOR */
+.software-logo-container {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 600px; 
+    height: 450px;
+    transition: opacity 0.4s ease;
+}
+
+#software-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 40px rgba(0, 0, 0, 0.7));
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Animación Orgánica Multidireccional */
+.float-side-side {
+    animation: floatOrganic 10s ease-in-out infinite;
+}
+
+@keyframes floatOrganic {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(15px, -10px) rotate(3deg); }
+    50% { transform: translate(-10px, 15px) rotate(-4deg); }
+    75% { transform: translate(-15px, -5px) rotate(2deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes floatingText {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.sw-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #fff;
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 0 auto;
+    text-shadow: 0 5px 20px rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.5s ease;
+}
+
+.sw-description.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.sw-category {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.1rem;
+    color: #e60000;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    margin-bottom: 20px;
+    display: block;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 1);
+}
+
+/* --- COLUMNA DERECHA --- */
+.software-right-col {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.software-header h1 {
+    font-family: 'Kaushan Script', cursive;
+    font-weight: 400;
+    font-size: 5.8rem;
+    letter-spacing: -2px;
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+}
+
+.float-header {
+    animation: floatingTitle 5s ease-in-out infinite;
+}
+
+@keyframes floatingTitle {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-12px) rotate(1deg); }
+}
+
+/* --- LISTA INTERACTIVA --- */
+.software-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.software-item {
+    position: relative;
+    padding: 12px 0;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sw-number {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 0.8rem;
+    color: #e60000;
+    margin-right: 15px;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.sw-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 1.8rem;
+    color: #cecccc;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Hover y Active */
+.software-item:hover .sw-name,
+.software-item.active .sw-name {
+    color: #fff;
+    padding-left: 20px;
+    font-weight: 600;
+}
+
+.software-item::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #e60000;
+    transition: width 0.4s ease;
+}
+
+.software-item:hover::after,
+.software-item.active::after {
+    width: 100%;
+}
+
+.software-item.active .sw-number {
+    opacity: 1;
+    color: #e60000;
+}

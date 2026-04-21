@@ -6,11 +6,22 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Esto hace que el video cubra todo sin deformarse */
     z-index: -1;
-    /* Lo manda al fondo de todos los elementos */
-    opacity: 0.9;
-    /* Opcional: bájale la opacidad para que se vea el estilo manga y el texto sea legible */
+    opacity: 1;
+}
+
+/* Capa de superposición con efecto blanco y bordes negros (RE-APLICADO) */
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Capa blanca con veteado negro en bordes */
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.103) 0%, rgba(5, 5, 5, 0.7) 100%),
+        rgba(255, 255, 255, 0.1);
+    z-index: -1;
+    pointer-events: none;
 }
 
 .hero-grid {
@@ -45,23 +56,17 @@
     letter-spacing: 15px;
 }
 
-
 .massive-title {
     font-family: 'Kaushan Script', cursive;
     font-size: clamp(3.5rem, 10vw, 8rem);
     line-height: 1.2;
     margin-bottom: 25px;
     color: var(--white);
-    /* El blanco en este tipo de letra se ve muy elegante y legible */
     text-transform: none;
-    /* Mantener mayúsculas y minúsculas para el estilo script */
     letter-spacing: 0px;
-
-    /* Sombra profunda para resaltar sobre el video */
     text-shadow:
         3px 3px 15px rgba(0, 0, 0, 0.9),
         0px 0px 5px rgba(0, 0, 0, 0.5);
-
     filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.4));
 }
 
@@ -69,11 +74,9 @@
     font-size: 1.1rem;
     line-height: 1.8;
     color: #ffffff;
-    /* Texto blanco para resaltar sobre el fondo oscuro */
     max-width: 450px;
     font-weight: 400;
     background: rgba(0, 0, 0, 0.4);
-    /* Fondo semi-transparente */
     padding: 15px;
     border-left: 4px solid #e60000;
     backdrop-filter: blur(5px);

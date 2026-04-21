@@ -14,10 +14,11 @@
     <link rel="stylesheet" th:if="${content == 'skills'}" th:href="@{/css/sections/skills.css}">
     <link rel="stylesheet" th:if="${content == 'videos'}" th:href="@{/css/sections/videos.css}">
     <link rel="stylesheet" th:if="${content == 'idioms'}" th:href="@{/css/sections/idioms.css}">
-    <link rel="stylesheet" th:if="${content == 'education' || content == 'software'}" th:href="@{/css/sections/grids.css}">
+    <link rel="stylesheet" th:if="${content == 'software'}" th:href="@{/css/sections/software.css}">
+    <link rel="stylesheet" th:if="${content == 'education'}" th:href="@{/css/sections/grids.css}">
     <link rel="stylesheet" th:if="${content == 'contact_me'}" th:href="@{/css/sections/contact.css}"> 
 </head>
-<body th:classappend="${content == 'videos'} ? 'bg-dark' : ''">
+<body th:classappend="${content == 'videos' || content == 'software' || content == 'idioms'} ? 'bg-dark' : ''">
     <!-- Efecto de transición manga (cortes de pantalla) -->
     <div class="transition-slice top-slice"></div>
     <div class="transition-slice bottom-slice"></div>

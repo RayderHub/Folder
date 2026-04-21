@@ -1,278 +1,173 @@
-/* Variables y Reset */
+/* --- ESTILOS BASE Y VARIABLES --- */
 :root {
-    --black: #0a0a0a;
-    --dark-gray: #1a1a1a;
-    --light-gray: #e0e0e0;
+    --black: #050505;
     --white: #ffffff;
-    --accent: #222222;
+    --red: #e60000;
+    --sidebar-width: 280px;
 }
 
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-body,
+/* Fondo negro preventivo en el HTML */
 html {
+    background-color: #050505;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-color: transparent !important;
+    color: var(--white);
     font-family: 'Inter', sans-serif;
-    background-color: transparent;
-    color: var(--black);
-    overflow: hidden;
-    /* Ocultamos barras de scroll de la ventana, navegamos internamente */
-    height: 100vh;
+    overflow-x: hidden;
+    height: 100%;
+    width: 100%;
 }
 
-h1,
-h2,
-h3 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 800;
+.bg-dark {
+    background-color: #050505 !important;
 }
 
-ul {
-    list-style: none;
-}
-
-.jp-decoration {
-    font-family: 'Permanent Marker', cursive;
-    font-size: 0.9rem;
-    letter-spacing: 4px;
-    color: #999;
-    margin-top: 5px;
-}
-
-.jp-vertical {
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    position: absolute;
-    right: 0px;
-    top: -30%;
-    font-size: 1.2rem;
-    color: var(--light-gray);
-    letter-spacing: 10px;
-}
-
-/* Layout General */
+/* --- LAYOUT PRINCIPAL --- */
 .app-layout {
     display: flex;
-    height: 100vh;
-    width: 100vw;
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    position: relative;
 }
 
-/* Sidebar Navbar */
+/* --- SIDEBAR --- */
 .sidebar {
-    width: 280px;
-    background-color: var(--black);
-    color: var(--white);
-    padding: 50px 40px;
+    width: var(--sidebar-width);
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: #050505;
+    padding: 60px 45px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    z-index: 10;
+    z-index: 1000;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo-area {
+    margin-bottom: 50px;
 }
 
 .logo-text {
     font-family: 'Inter', sans-serif;
-    font-size: 3rem;
-    line-height: 1;
-    margin-bottom: 5px;
+    font-weight: 700;
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+    color: var(--white);
+    margin: 0;
 }
 
+.jp-decoration {
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    color: #666;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+/* Navegación */
 .nav-menu {
+    list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 15px;
 }
 
 .nav-btn {
-    background: none;
-    border: none;
+    text-decoration: none;
     color: #888;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+    font-weight: 600;
     letter-spacing: 2px;
-    cursor: pointer;
-    text-align: left;
-    position: relative;
-    padding: 5px 0;
-    transition: color 0.3s;
+    text-transform: uppercase;
     display: flex;
     align-items: center;
-    text-decoration: none;
+    gap: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 8px 0;
 }
 
-.nav-btn:hover,
-.nav-btn.active {
+.nav-btn:hover, .nav-btn.active {
     color: var(--white);
 }
 
 .nav-line {
-    display: inline-block;
+    width: 0;
     height: 1px;
-    width: 0px;
-    background-color: var(--white);
-    margin-left: 15px;
-    transition: width 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    background: var(--red);
+    transition: width 0.4s ease;
+    position: absolute;
+    right: -40px;
 }
 
-.nav-btn:hover .nav-line,
-.nav-btn.active .nav-line {
-    width: 40px;
+.nav-btn.active .nav-line,
+.nav-btn:hover .nav-line {
+    width: 30px;
 }
 
-.sidebar-footer p {
-    font-size: 0.75rem;
-    color: #555;
-    letter-spacing: 1px;
+.sidebar-footer {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: #444;
+    text-transform: uppercase;
+    line-height: 1.6;
 }
 
-/* Área principal de contenido */
+/* --- CONTENIDO PRINCIPAL --- */
 .main-content {
+    margin-left: var(--sidebar-width);
     flex: 1;
     position: relative;
-    padding: 60px 80px;
+    height: 100vh;
     overflow-y: auto;
-    background-color: transparent;
-    /* Fondo transparente para mostrar el video */
 }
 
-/* Paneles de Vista (SPA) */
 .view-panel {
-    position: absolute;
-    top: 0;
-    left: 0;
+    display: none;
+    opacity: 0;
     width: 100%;
     height: 100%;
-    padding: 60px 80px;
-    display: none;
-    /* Controlado por JS */
-    opacity: 0;
+    padding: 80px 8%;
+    background: transparent;
 }
 
 .view-panel.active {
     display: block;
-    opacity: 0;
-    /* Lo mantenemos invisible; JS lo mostrará suavemente */
+    opacity: 1;
 }
 
-.stagger-enter {
-    opacity: 0;
-    transform: translateY(30px);
-    will-change: transform, opacity;
-}
-
-/* Textos y Encabezados */
-.subtitle {
-    font-size: 0.85rem;
-    letter-spacing: 4px;
-    font-weight: 600;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-.massive-title {
-    font-family: 'Kaushan Script', cursive;
-    font-size: clamp(4rem, 8vw, 7rem);
-    line-height: 0.9;
-    margin-bottom: 30px;
-    color: var(--black);
-}
-
-.description {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #444;
-    max-width: 400px;
-    font-weight: 300;
-}
-
-.section-title {
-    font-size: 3.5rem;
-    line-height: 1;
-    border-bottom: 2px solid var(--black);
-    padding-bottom: 10px;
-    display: inline-block;
-}
-
-.mt-40 {
-    margin-top: 40px;
-}
-
-.mt-20 {
-    margin-top: 20px;
-}
-
-/* Componentes Comunes */
-.manga-frame {
-    border: 2px solid var(--black);
-    position: relative;
-    background: #fdfdfd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-.manga-frame::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 150%;
-    height: 1px;
-    background-color: #eee;
-    transform: translate(-50%, -50%) rotate(-35deg);
-    z-index: 1;
-}
-
-.placeholder-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
-    color: #999;
-    letter-spacing: 2px;
-    z-index: 2;
-    background: var(--white);
-    padding: 5px 10px;
-}
-
-.minimal-list li {
-    font-size: 1.15rem;
-    padding: 15px 0;
-    line-height: 1.5;
-    position: relative;
-}
-
-.border-list li {
-    border-bottom: 1px solid var(--light-gray);
-}
-
-.border-list li:last-child {
-    border-bottom: none;
-}
-
-/* Transiciones animadas GSAP (Cortinas negras) */
+/* --- CORTINAS --- */
 .transition-slice {
     position: fixed;
     left: 0;
     width: 100vw;
-    height: 50vh;
-    background-color: var(--black);
-    z-index: 9999;
+    height: 52vh;
+    background-color: #050505;
+    z-index: 99999;
     pointer-events: none;
-    transform: scaleY(0);
+    will-change: transform;
 }
 
-.top-slice {
-    top: 0;
-    transform-origin: top;
-}
+.top-slice { top: 0; transform: translateY(-105%); }
+.bottom-slice { bottom: 0; transform: translateY(105%); }
 
-.bottom-slice {
-    bottom: 0;
-    transform-origin: bottom;
+/* --- ENTRADAS --- */
+.stagger-enter {
+    opacity: 0;
+    transform: translateY(30px);
 }
-
-.bg-dark {
-    background-color: #121212 !important;
-}
+/* Estilos globales eliminados de aquí para respetar la separación por secciones */
