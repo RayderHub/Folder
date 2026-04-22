@@ -10,6 +10,11 @@ let videoData = [];
 
 async function fetchVideos() {
     try {
+        // Detectar el idioma del contenedor
+        const layout = document.getElementById('videos-layout-container');
+        const currentLang = layout ? layout.getAttribute('data-lang') || 'es' : 'es';
+
+        // 1. Pedir todos los videos (Sin romper si falta la columna 'lang')
         const response = await fetch(`${SB_URL}/rest/v1/videos?select=*&order=order_index.asc`, {
             headers: {
                 'apikey': SB_KEY,
@@ -18,7 +23,14 @@ async function fetchVideos() {
             }
         });
 
-        videoData = await response.json();
+        let allVideos = await response.json();
+
+        // 2. Filtrar localmente SOLO SI existe la columna 'lang' en tus datos
+        if (allVideos.length > 0 && 'lang' in allVideos[0]) {
+            videoData = allVideos.filter(v => v.lang === currentLang);
+        } else {
+            videoData = allVideos; // Si no existe la columna, mostrar todo como antes
+        }
 
         if (videoData && videoData.length > 0) {
             renderThumbnails();

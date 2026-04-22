@@ -44,6 +44,9 @@ async function fetchExperience() {
     const expCarousel = document.getElementById('experience-carousel');
     if (!expCarousel) return;
 
+    const currentLang = expCarousel.getAttribute('data-lang') || 'es';
+    const noDescText = expCarousel.getAttribute('data-no-desc') || 'Sin descripción detallada.';
+
     try {
         const response = await fetch(`${SB_URL}/rest/v1/experience?select=*&order=order_index.asc`, {
             headers: {
@@ -51,7 +54,13 @@ async function fetchExperience() {
                 'Authorization': `Bearer ${SB_KEY}`
             }
         });
-        const experiences = await response.json();
+        const allExperiences = await response.json();
+
+        // Filtrar localmente si existe la columna 'lang'
+        let experiences = allExperiences;
+        if (allExperiences.length > 0 && 'lang' in allExperiences[0]) {
+            experiences = allExperiences.filter(exp => exp.lang === currentLang);
+        }
 
         if (experiences && experiences.length > 0) {
             expCarousel.innerHTML = experiences.map((exp, index) => `
@@ -63,7 +72,7 @@ async function fetchExperience() {
                     </div>
                     <div class="exp-body">
                         <div class="exp-date">${exp.periodo} <span class="exp-duration">(${exp.duracion})</span></div>
-                        <p class="exp-description">${exp.descripcion || 'Sin descripción detallada.'}</p>
+                        <p class="exp-description">${exp.descripcion || noDescText}</p>
                     </div>
                     <div class="card-accent"></div>
                 </div>
@@ -71,6 +80,8 @@ async function fetchExperience() {
 
             // Inicializar funcionalidad del carrusel después de cargar datos
             setupExperienceCarousel();
+        } else {
+             expCarousel.innerHTML = `<div style="color: #666; font-size: 10px; padding: 20px;">NO DATA FOUND (${currentLang})</div>`;
         }
     } catch (err) {
         console.error("Error fetching experience from Supabase:", err);

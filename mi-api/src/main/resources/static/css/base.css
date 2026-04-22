@@ -120,11 +120,18 @@ body {
 }
 
 .sidebar-footer {
-    font-size: 0.65rem;
-    letter-spacing: 2px;
-    color: #444;
-    text-transform: uppercase;
-    line-height: 1.6;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 30px;
+    margin-top: 20px;
+}
+
+.lang-menu {
+    gap: 8px !important; /* Más compacto que el menú principal */
+}
+
+.lang-menu .nav-btn {
+    font-size: 0.75rem !important; /* Un poco más pequeño para jerarquía */
+    padding: 4px 0 !important;
 }
 
 /* --- CONTENIDO PRINCIPAL --- */

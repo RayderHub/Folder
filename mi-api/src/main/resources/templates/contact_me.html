@@ -11,40 +11,39 @@
 
         <!-- Cabecera de Sección -->
         <div class="contact-header stagger-enter">
-            <h1 class="massive-title" style="font-size: 3.5rem; color: var(--black);">CONTACTO</h1>
-            <p class="subtitle">Gracias por llegar al final de mi portafolio. Te gusto mi perfil? Deja aqui un mensaje y
-                te contactare lo mas pronto posible!</p>
+            <h1 class="massive-title" style="font-size: 3.5rem; color: var(--black);" th:text="#{contact.title}">CONTACTO</h1>
+            <p class="subtitle" th:text="#{contact.subtitle}">Gracias por llegar al final de mi portafolio...</p>
         </div>
 
         <!-- Formulario -->
         <form id="contact-form" class="manga-form stagger-enter">
             <div class="form-group">
-                <label class="label-manga">NOMBRE COMPLETO</label>
-                <input type="text" id="name" name="name" placeholder="¿Cómo te llamas?" required>
+                <label class="label-manga" th:text="#{contact.label.name}">NOMBRE COMPLETO</label>
+                <input type="text" id="name" name="name" th:placeholder="#{contact.placeholder.name}" required>
             </div>
 
             <div class="form-group">
-                <label class="label-manga">CORREO / TELÉFONO</label>
-                <input type="text" id="contact_info" name="contact_info" placeholder="correo@ejemplo.com o +52..."
+                <label class="label-manga" th:text="#{contact.label.info}">CORREO / TELÉFONO</label>
+                <input type="text" id="contact_info" name="contact_info" th:placeholder="#{contact.placeholder.info}"
                     required>
             </div>
 
             <div class="form-group">
-                <label class="label-manga">¿EN QUÉ PUEDO AYUDARTE?</label>
+                <label class="label-manga" th:text="#{contact.label.message}">¿EN QUÉ PUEDO AYUDARTE?</label>
                 <textarea id="message" name="message" rows="5"
-                    placeholder="Cuentame, que deseas saber de mi o como puedo ayudarte..." required></textarea>
+                    th:placeholder="#{contact.placeholder.message}" required></textarea>
             </div>
 
             <button type="submit" id="submit-btn" class="submit-btn-manga">
-                ENVIAR MENSAJE <span class="btn-arrow">→</span>
+                <span th:text="#{contact.btn.send}">ENVIAR MENSAJE</span> <span class="btn-arrow">→</span>
             </button>
         </form>
 
         <!-- Mensaje de Éxito -->
         <div id="success-message" class="success-manga-box">
             <div class="success-content">
-                <h2>¡LOGRADO!</h2>
-                <p>Tu mensaje ha sido enviado correctamente. Revisaré mi bandeja pronto.</p>
+                <h2 th:text="#{contact.success.title}">¡LOGRADO!</h2>
+                <p th:text="#{contact.success.text}">Tu mensaje ha sido enviado correctamente...</p>
             </div>
         </div>
 

@@ -9,19 +9,16 @@
 <section id="view-profile" class="view-panel active">
     <div class="hero-grid">
         <div class="hero-text-side stagger-enter">
-            <h1 class="massive-title">JOB DE<br>LA VEGA</h1>
+            <h1 class="massive-title" th:utext="#{profile.name}">JOB DE<br>LA VEGA</h1>
             <p class="description">
-                Editor de video especializado en videos long-form, shorts y reels
-                con un entendimiento claro en una perspectiva centrada al cliente,
-                conocimiento en diseño digital y un conocimiento alto en el desarrollo de sitios web y manejo de
-                redes sociales.
+                <span th:text="#{profile.description}">Editor de video especializado...</span>
                 <br>
                 <br>
-                Telefono: +52 4428774013
+                <span th:text="#{profile.phone}">Telefono:</span> +52 4428774013
                 <br>
-                Correo: nomercyyt.la@gmail.com
+                <span th:text="#{profile.email}">Correo:</span> nomercyyt.la@gmail.com
             </p>
-            <div class="jp-vertical">VIVE</div>
+            <div class="jp-vertical" th:text="#{profile.live}">VIVE</div>
         </div>
         <div class="hero-image-side stagger-enter">
             <!-- Frame estilo manga minimalista

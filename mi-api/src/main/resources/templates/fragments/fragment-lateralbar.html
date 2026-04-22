@@ -5,35 +5,42 @@
     <nav class="sidebar" th:fragment="lateralbar">
         <div class="logo-area">
             <h2 class="logo-text">RAYDER</h2>
-            <div class="jp-decoration">PORTAFOLIO PERSONAL</div>
+            <div class="jp-decoration" th:text="#{sidebar.subtitle}">PORTAFOLIO PERSONAL</div>
         </div>
 
         <ul class="nav-menu">
-            <li><a th:href="@{/}" class="nav-btn" th:classappend="${content == 'profile'} ? 'active' : ''">PERFIL <span
-                        class="nav-line"></span></a></li>
-            <li><a th:href="@{/software}" class="nav-btn"
-                    th:classappend="${content == 'software'} ? 'active' : ''">SOFTWARE <span
-                        class="nav-line"></span></a></li>
-            <li><a th:href="@{/skills}" class="nav-btn"
-                    th:classappend="${content == 'skills'} ? 'active' : ''">HABILIDADES <span
-                        class="nav-line"></span></a></li>
-            <li><a th:href="@{/videos}" class="nav-btn" th:classappend="${content == 'videos'} ? 'active' : ''">VIDEOS
-                    <span class="nav-line"></span></a></li>
-            <li><a th:href="@{/idioms}" class="nav-btn" th:classappend="${content == 'idioms'} ? 'active' : ''">IDIOMAS
-                    <span class="nav-line"></span></a></li>
-            <li><a th:href="@{/education}" class="nav-btn"
-                    th:classappend="${content == 'education'} ? 'active' : ''">EDUCACIÓN <span
-                        class="nav-line"></span></a></li>
-            <li><a th:href="@{/experience}" class="nav-btn"
-                    th:classappend="${content == 'experience'} ? 'active' : ''">EXPERIENCIA <span
-                        class="nav-line"></span></a></li>
-            <li><a th:href="@{/contact}" class="nav-btn"
-                    th:classappend="${content == 'contact_me'} ? 'active' : ''">CONTACTO <span
-                        class="nav-line"></span></a></li>
+            <li><a th:href="@{/}" class="nav-btn" th:classappend="${content == 'profile'} ? 'active' : ''">
+                <span th:text="#{nav.profile}">PERFIL</span> <span class="nav-line"></span></a></li>
+            <li><a th:href="@{/software}" class="nav-btn" th:classappend="${content == 'software'} ? 'active' : ''">
+                <span th:text="#{nav.software}">SOFTWARE</span> <span class="nav-line"></span></a></li>
+            <li><a th:href="@{/skills}" class="nav-btn" th:classappend="${content == 'skills'} ? 'active' : ''">
+                <span th:text="#{nav.skills}">HABILIDADES</span> <span class="nav-line"></span></a></li>
+            <li><a th:href="@{/videos}" class="nav-btn" th:classappend="${content == 'videos'} ? 'active' : ''">
+                <span th:text="#{nav.videos}">VIDEOS</span> <span class="nav-line"></span></a></li>
+            <li><a th:href="@{/idioms}" class="nav-btn" th:classappend="${content == 'idioms'} ? 'active' : ''">
+                <span th:text="#{nav.idioms}">IDIOMAS</span> <span class="nav-line"></span></a></li>
+            <li><a th:href="@{/education}" class="nav-btn" th:classappend="${content == 'education'} ? 'active' : ''">
+                <span th:text="#{nav.education}">EDUCACIÓN</span> <span class="nav-line"></span></a></li>
+            <li><a th:href="@{/experience}" class="nav-btn" th:classappend="${content == 'experience'} ? 'active' : ''">
+                <span th:text="#{nav.experience}">EXPERIENCIA</span> <span class="nav-line"></span></a></li>
+            <li><a th:href="@{/contact}" class="nav-btn" th:classappend="${content == 'contact_me'} ? 'active' : ''">
+                <span th:text="#{nav.contact}">CONTACTO</span> <span class="nav-line"></span></a></li>
         </ul>
 
         <div class="sidebar-footer">
-            <p>2026 <br>PORTAFOLIO</p>
+            <div class="jp-decoration" style="margin-bottom: 10px;" th:text="#{sidebar.lang_change}">CAMBIAR IDIOMA</div>
+            <ul class="nav-menu lang-menu">
+                <li>
+                    <a th:href="@{''(lang=es)}" class="nav-btn" th:classappend="${#locale.language == 'es'} ? 'active' : ''">
+                        ESPAÑOL <span class="nav-line"></span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{''(lang=en)}" class="nav-btn" th:classappend="${#locale.language == 'en'} ? 'active' : ''">
+                        ENGLISH <span class="nav-line"></span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </nav>
 </head>

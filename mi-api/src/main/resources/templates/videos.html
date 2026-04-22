@@ -1,7 +1,7 @@
 <section id="view-videos" class="view-panel active">
     <!-- Overlay de Modo Cine (Lightbox) -->
     <div id="cinema-overlay" class="cinema-mode-overlay" onclick="toggleCinema(false)">
-        <span class="close-cinema" onclick="toggleCinema(false)">CERRAR [X]</span>
+        <span class="close-cinema" onclick="toggleCinema(false)" th:text="#{videos.close}">CERRAR [X]</span>
         <div class="cinema-content" onclick="event.stopPropagation()">
             <iframe id="cinema-player" src="" frameborder="0" style="width:100%; height:100%;"
                 allow="autoplay; fullscreen"></iframe>
@@ -10,14 +10,15 @@
 
     <!-- Texto ambiental de fondo (Estilo escalonado y rotado) -->
     <div class="background-phrase-container flicker-text">
-        <div class="phrase-word" style="--offset: 20px; --tilt: -5deg;">WHO</div>
-        <div class="phrase-word" style="--offset: 110px; --tilt: 3deg;">I</div>
-        <div class="phrase-word" style="--offset: 80px; --tilt: -8deg;">USED</div>
-        <div class="phrase-word" style="--offset: 130px; --tilt: 7deg;">TO</div>
-        <div class="phrase-word" style="--offset: 65px; --tilt: -4deg;">BE</div>
+        <div class="phrase-word" style="--offset: 20px; --tilt: -5deg;" th:text="#{videos.phrase.w1}">WHO</div>
+        <div class="phrase-word" style="--offset: 110px; --tilt: 3deg;" th:text="#{videos.phrase.w2}">I</div>
+        <div class="phrase-word" style="--offset: 80px; --tilt: -8deg;" th:text="#{videos.phrase.w3}">USED</div>
+        <div class="phrase-word" style="--offset: 130px; --tilt: 7deg;" th:text="#{videos.phrase.w4}">TO</div>
+        <div class="phrase-word" style="--offset: 65px; --tilt: -4deg;" th:text="#{videos.phrase.w5}">BE</div>
     </div>
 
-    <div class="videos-layout" id="videos-layout-container">
+    <!-- Pasar el idioma actual a JS mediante un atributo de datos -->
+    <div class="videos-layout" id="videos-layout-container" th:data-lang="${#locale.language}">
         <!-- Columna 1: Miniaturas (Slider en Móvil) -->
         <div class="video-thumbnails-wrapper" id="thumbnails-slider-wrapper">
             <button class="nav-arrow left-arrow" id="vid-nav-left">
@@ -25,7 +26,7 @@
             </button>
 
             <div class="video-thumbnails stagger-enter" id="thumbnails-container">
-                <div style="color: #666; font-size: 10px; padding: 10px;">CARGANDO...</div>
+                <div style="color: #666; font-size: 10px; padding: 10px;" th:text="#{videos.loading}">CARGANDO...</div>
             </div>
 
             <button class="nav-arrow right-arrow" id="vid-nav-right">
@@ -38,18 +39,18 @@
 
         <div class="video-display-area">
             <div class="video-info-header stagger-enter">
-                <h1 id="video-title" class="massive-title">REEL</h1>
+                <h1 id="video-title" class="massive-title">...</h1>
                 <div id="video-desc" class="jp-decoration">// DATA_SOURCE: PROJECT_RENDER // STATUS: STABLE</div>
             </div>
 
             <div class="comparison-grid">
                 <!-- Bloque Raw Video -->
                 <div class="comparison-block stagger-enter">
-                    <span class="label-manga">MATERIAL ORIGINAL</span>
+                    <span class="label-manga" th:text="#{videos.label.raw}">MATERIAL ORIGINAL</span>
                     <div class="video-container" id="container-raw">
                         <div class="video-overlay-play" id="overlay-raw">
                             <button class="control-btn" onclick="playManual('raw')">PLAY ▷</button>
-                            <button class="control-btn" onclick="toggleCinema(true, 'raw')">AUMENTAR ⛶</button>
+                            <button class="control-btn" onclick="toggleCinema(true, 'raw')">⛶</button>
                         </div>
                         <iframe id="raw-video-player" data-id="" src="" frameborder="0" allow="autoplay; fullscreen"
                             style="width: 100%; height: 100%;">
@@ -59,11 +60,11 @@
 
                 <!-- Bloque My Edition -->
                 <div class="comparison-block stagger-enter">
-                    <span class="label-manga">MI EDICIÓN</span>
+                    <span class="label-manga" th:text="#{videos.label.edit}">MI EDICIÓN</span>
                     <div class="video-container" id="container-edit">
                         <div class="video-overlay-play" id="overlay-edit">
                             <button class="control-btn" onclick="playManual('edit')">PLAY ▷</button>
-                            <button class="control-btn" onclick="toggleCinema(true, 'edit')">AUMENTAR ⛶</button>
+                            <button class="control-btn" onclick="toggleCinema(true, 'edit')">⛶</button>
                         </div>
                         <iframe id="edit-video-player" data-id="" src="" frameborder="0" allow="autoplay; fullscreen"
                             style="width: 100%; height: 100%;">

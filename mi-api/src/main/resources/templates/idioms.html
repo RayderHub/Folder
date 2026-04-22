@@ -33,7 +33,7 @@
 
                 <div class="btn-container">
                     <a href="https://drive.google.com/file/d/1COqHBKiA-K4EujFcomjpHcVxD24Vo0eB/view?usp=sharing"
-                        target="_blank" class="monitor-action-btn">
+                        target="_blank" class="monitor-action-btn" th:text="#{idioms.btn.access}">
                         ACCESS_SYSTEM_FILE.PDF
                     </a>
                 </div>
@@ -43,12 +43,12 @@
             <div class="grid-col">
                 <ul class="interactive-lang-list">
                     <li class="lang-item">
-                        <span class="lang-main">INGLÉS</span>
-                        <span class="lang-detail">// INTERMEDIO-AVANZADO</span>
+                        <span class="lang-main" th:text="#{idioms.lang1.name}">INGLÉS</span>
+                        <span class="lang-detail" th:text="#{idioms.lang1.level}">// INTERMEDIO-AVANZADO</span>
                     </li>
                     <li class="lang-item">
-                        <span class="lang-main">ESPAÑOL</span>
-                        <span class="lang-detail">// IDIOMA NATIVO</span>
+                        <span class="lang-main" th:text="#{idioms.lang2.name}">ESPAÑOL</span>
+                        <span class="lang-detail" th:text="#{idioms.lang2.level}">// IDIOMA NATIVO</span>
                     </li>
                 </ul>
             </div>

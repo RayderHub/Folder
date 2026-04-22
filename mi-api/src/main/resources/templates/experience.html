@@ -25,7 +25,7 @@
     <div class="bottom-shadow"></div>
 
     <div class="section-header stagger-enter">
-        <h2 class="section-title">EXPERIENCIA LABORAL</h2>
+        <h2 class="section-title" th:text="#{exp.title}">EXPERIENCIA LABORAL</h2>
     </div>
 
     <div class="experience-carousel-wrapper stagger-enter">
@@ -36,8 +36,11 @@
                 </svg>
             </div>
 
-            <div id="experience-carousel" class="experience-carousel">
+            <div id="experience-carousel" class="experience-carousel" 
+                 th:data-lang="${#locale.language}"
+                 th:data-no-desc="#{exp.no_desc}">
                 <!-- Cards will be injected here -->
+                <div style="color: #666; font-size: 10px; padding: 20px;">LOADING...</div>
             </div>
 
             <div class="carousel-nav next-btn">

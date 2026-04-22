@@ -12,19 +12,19 @@
 
     <div class="edu-content">
         <div class="section-header stagger-enter">
-            <h2 class="section-title">EDUCACIÓN</h2>
+            <h2 class="section-title" th:text="#{edu.title}">EDUCACIÓN</h2>
         </div>
 
         <div class="dual-grid mt-40">
             <div class="grid-col stagger-enter">
-                <h3 class="subtitle">FORMACIÓN ACADÉMICA</h3>
+                <h3 class="subtitle" th:text="#{edu.subtitle.academic}">FORMACIÓN ACADÉMICA</h3>
                 <ul id="studies-list" class="minimal-list border-list mt-20">
-                    <li>Tecnico superior en Desarrollo de Software Multiplataforma | 2023-2025</li>
-                    <li>Ingenieria en Gestion y Desarrollo de Software | 2025-Actualidad</li>
+                    <li th:text="#{edu.study1}">Tecnico superior en Desarrollo de Software Multiplataforma | 2023-2025</li>
+                    <li th:text="#{edu.study2}">Ingenieria en Gestion y Desarrollo de Software | 2025-Actualidad</li>
                 </ul>
             </div>
             <div class="grid-col stagger-enter">
-                <h3 class="subtitle">CURSOS Y CERTIFICADOS</h3>
+                <h3 class="subtitle" th:text="#{edu.subtitle.courses}">CURSOS Y CERTIFICADOS</h3>
                 <ul id="courses-list" class="minimal-list border-list mt-20">
                     <li>Data Networks Certificate</li>
                     <li>Cisco Certified in Networking</li>
