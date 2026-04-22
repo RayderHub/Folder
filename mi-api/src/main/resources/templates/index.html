@@ -76,5 +76,6 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script th:src="@{/js/portfolio.js}"></script>
+    <script th:if="${content == 'contact_me'}" th:src="@{/js/sections/contact.js}"></script>
 </body>
 </html>
