@@ -29,17 +29,25 @@
     
     <!-- 3. CSS General -->
     <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/responsive/global-responsive.css}">
     
     <!-- 4. CSS Específicos por Sección -->
     <link rel="stylesheet" th:if="${content == 'profile'}" th:href="@{/css/sections/profile.css}">
     <link rel="stylesheet" th:if="${content == 'profile'}" th:href="@{/css/responsive/profile-responsive.css}">
     <link rel="stylesheet" th:if="${content == 'experience'}" th:href="@{/css/sections/experience.css}">
+    <link rel="stylesheet" th:if="${content == 'experience'}" th:href="@{/css/responsive/experience-responsive.css}">
     <link rel="stylesheet" th:if="${content == 'skills'}" th:href="@{/css/sections/skills.css}">
+    <link rel="stylesheet" th:if="${content == 'skills'}" th:href="@{/css/responsive/skills-responsive.css}">
     <link rel="stylesheet" th:if="${content == 'videos'}" th:href="@{/css/sections/videos.css}">
+    <link rel="stylesheet" th:if="${content == 'videos'}" th:href="@{/css/responsive/videos-responsive.css}">
     <link rel="stylesheet" th:if="${content == 'idioms'}" th:href="@{/css/sections/idioms.css}">
+    <link rel="stylesheet" th:if="${content == 'idioms'}" th:href="@{/css/responsive/idioms-responsive.css}">
     <link rel="stylesheet" th:if="${content == 'software'}" th:href="@{/css/sections/software.css}">
+    <link rel="stylesheet" th:if="${content == 'software'}" th:href="@{/css/responsive/software-responsive.css}">
     <link rel="stylesheet" th:if="${content == 'education'}" th:href="@{/css/sections/grids.css}">
-    <link rel="stylesheet" th:if="${content == 'contact_me'}" th:href="@{/css/sections/contact.css}"> 
+    <link rel="stylesheet" th:if="${content == 'education'}" th:href="@{/css/responsive/education-responsive.css}">
+    <link rel="stylesheet" th:if="${content == 'contact_me'}" th:href="@{/css/sections/contact.css}">
+    <link rel="stylesheet" th:if="${content == 'contact_me'}" th:href="@{/css/responsive/contact-responsive.css}"> 
 </head>
 <body style="background-color: transparent !important;">
     <!-- Botón Menú Móvil -->

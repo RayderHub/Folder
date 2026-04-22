@@ -122,5 +122,23 @@ function toggleCinema(show, type = '') {
     }
 }
 
-// Inicializar carga
-fetchVideos();
+// Inicializar carga y eventos de navegación móvil
+document.addEventListener('DOMContentLoaded', () => {
+    fetchVideos();
+    setupMobileNav();
+});
+
+function setupMobileNav() {
+    const leftBtn = document.getElementById('vid-nav-left');
+    const rightBtn = document.getElementById('vid-nav-right');
+    const container = document.getElementById('thumbnails-container');
+
+    if (leftBtn && rightBtn && container) {
+        leftBtn.addEventListener('click', () => {
+            container.scrollBy({ left: -200, behavior: 'smooth' });
+        });
+        rightBtn.addEventListener('click', () => {
+            container.scrollBy({ left: 200, behavior: 'smooth' });
+        });
+    }
+}

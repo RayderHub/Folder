@@ -47,41 +47,120 @@
                 <div class="software-header" id="stagger-header" style="opacity: 0; transform: translateY(30px);">
                     <h1 class="float-header">SOFTWARE</h1>
                 </div>
-
                 <ul class="software-list">
-                    <li class="software-item sw-list-item active" style="opacity: 0; transform: translateY(20px);"
+                    <li class="software-item sw-list-item active" 
                         onclick="switchSoftware(this, 'video', 'Mi editor de video principal con el que trabajo utilizando bloques con diferentes efectos, transiciones, correccion de color, correccion de audio, etc', '/images/premiere.png', '/images/premiere_fondo.png', 1, 'Adobe Premiere Pro', 'Experto')">
-                        <span class="sw-number">01</span><span class="sw-name">Adobe Premiere Pro</span>
+                        <div class="sw-item-header">
+                            <span class="sw-number">01</span><span class="sw-name">Adobe Premiere Pro</span>
+                        </div>
+                        <div class="mobile-sw-detail">
+                            <div class="mobile-sw-bg" style="background-image: url('/images/premiere_fondo.png');"></div>
+                            <img src="/images/premiere.png" class="mobile-sw-logo">
+                            <div class="mobile-sw-text">
+                                <span class="mobile-sw-cat">EXP: EXPERTO</span>
+                                <p>Mi editor de video principal con el que trabajo utilizando bloques con diferentes efectos, transiciones, correccion de color, correccion de audio, etc</p>
+                            </div>
+                        </div>
                     </li>
-                    <li class="software-item sw-list-item" style="opacity: 0; transform: translateY(20px);"
+                    <li class="software-item sw-list-item" 
                         onclick="switchSoftware(this, 'motion', 'Lo utilizo normalmente si quiero crear o modificar elementos que incluyan movimientos o efectos visuales mas complejos que premiere no dispone', '/images/after.png', '/images/after_fondo.png', 1, 'Adobe After Effects', 'Moderado')">
-                        <span class="sw-number">02</span><span class="sw-name">Adobe After Effects</span>
+                        <div class="sw-item-header">
+                            <span class="sw-number">02</span><span class="sw-name">Adobe After Effects</span>
+                        </div>
+                        <div class="mobile-sw-detail">
+                            <div class="mobile-sw-bg" style="background-image: url('/images/after_fondo.png');"></div>
+                            <img src="/images/after.png" class="mobile-sw-logo">
+                            <div class="mobile-sw-text">
+                                <span class="mobile-sw-cat">EXP: MODERADO</span>
+                                <p>Lo utilizo normalmente si quiero crear o modificar elementos que incluyan movimientos o efectos visuales mas complejos que premiere no dispone</p>
+                            </div>
+                        </div>
                     </li>
-                    <li class="software-item sw-list-item" style="opacity: 0; transform: translateY(20px);"
-                        onclick="switchSoftware(this, 'video', 'Es un editor de video muy profesional el cual utilizo si es necesario realizar una edicion de video a detalle, videos en 4k, o necesito una herramienta profesional para la correccion de color o la estabilizacion en un video', '/images/davinci.png', '/images/davinci_fondo.png', 0.78, 'DaVinci Resolve', 'Moderdo')">
-                        <span class="sw-number">03</span><span class="sw-name">DaVinci Resolve</span>
+                    <li class="software-item sw-list-item" 
+                        onclick="switchSoftware(this, 'video', 'Es un editor de video muy profesional el cual utilizo si es necesario realizar una edicion de video a detalle, videos en 4k, o necesito una herramienta profesional para la correccion de color o la estabilizacion en un video', '/images/davinci.png', '/images/davinci_fondo.png', 0.78, 'DaVinci Resolve', 'Moderado')">
+                        <div class="sw-item-header">
+                            <span class="sw-number">03</span><span class="sw-name">DaVinci Resolve</span>
+                        </div>
+                        <div class="mobile-sw-detail">
+                            <div class="mobile-sw-bg" style="background-image: url('/images/davinci_fondo.png');"></div>
+                            <img src="/images/davinci.png" class="mobile-sw-logo">
+                            <div class="mobile-sw-text">
+                                <span class="mobile-sw-cat">EXP: MODERADO</span>
+                                <p>Es un editor de video muy profesional el cual utilizo si es necesario realizar una edicion de video a detalle, videos en 4k, o necesito una herramienta profesional para la correccion de color o la estabilizacion en un video</p>
+                            </div>
+                        </div>
                     </li>
-                    <li class="software-item sw-list-item" style="opacity: 0; transform: translateY(20px);"
+                    <li class="software-item sw-list-item" 
                         onclick="switchSoftware(this, 'design', 'Tengo un conocimiento moderado para esta aplicacion pero no suelo utilizarlo ya que tiene funciones y atajos mas basicos que otros programas de Adobe', '/images/illustrator.webp', '/images/illustrator_fondo.png', 1, 'Adobe Illustrator', 'Bajo')">
-                        <span class="sw-number">04</span><span class="sw-name">Adobe Illustrator</span>
+                        <div class="sw-item-header">
+                            <span class="sw-number">04</span><span class="sw-name">Adobe Illustrator</span>
+                        </div>
+                        <div class="mobile-sw-detail">
+                            <div class="mobile-sw-bg" style="background-image: url('/images/illustrator_fondo.png');"></div>
+                            <img src="/images/illustrator.webp" class="mobile-sw-logo">
+                            <div class="mobile-sw-text">
+                                <span class="mobile-sw-cat">EXP: BAJO</span>
+                                <p>Tengo un conocimiento moderado para esta aplicacion pero no suelo utilizarlo ya que tiene funciones y atajos mas basicos que otros programas de Adobe</p>
+                            </div>
+                        </div>
                     </li>
-                    <li class="software-item sw-list-item" style="opacity: 0; transform: translateY(20px);"
+                    <li class="software-item sw-list-item" 
                         onclick="switchSoftware(this, 'design', 'Aplicacion que utilizo en mi dia a dia si quiero realizar cualquier edicion de imagen o crear el diseño de una miniatura', '/images/photoshop.png', '/images/photoshop_fondo.png', 0.9, 'Adobe Photoshop', 'Avanzado')">
-                        <span class="sw-number">05</span><span class="sw-name">Adobe Photoshop</span>
+                        <div class="sw-item-header">
+                            <span class="sw-number">05</span><span class="sw-name">Adobe Photoshop</span>
+                        </div>
+                        <div class="mobile-sw-detail">
+                            <div class="mobile-sw-bg" style="background-image: url('/images/photoshop_fondo.png');"></div>
+                            <img src="/images/photoshop.png" class="mobile-sw-logo">
+                            <div class="mobile-sw-text">
+                                <span class="mobile-sw-cat">EXP: AVANZADO</span>
+                                <p>Aplicacion que utilizo en mi dia a dia si quiero realizar cualquier edicion de imagen o crear el diseño de una miniatura</p>
+                            </div>
+                        </div>
                     </li>
-                    <li class="software-item sw-list-item" style="opacity: 0; transform: translateY(20px);"
+                    <li class="software-item sw-list-item" 
                         onclick="switchSoftware(this, 'motion', 'La aplicacion es muy util para exportar diferentes tipos de videos con diferentes formatos y configuraciones no soportadas al exportar directamente en Premiere Pro', '/images/encoder.webp', '/images/encoder_fondo.png', 0.8, 'Adobe Media Encoder', 'Avanzado')">
-                        <span class="sw-number">06</span><span class="sw-name">Adobe Media Encoder</span>
+                        <div class="sw-item-header">
+                            <span class="sw-number">06</span><span class="sw-name">Adobe Media Encoder</span>
+                        </div>
+                        <div class="mobile-sw-detail">
+                            <div class="mobile-sw-bg" style="background-image: url('/images/encoder_fondo.png');"></div>
+                            <img src="/images/encoder.webp" class="mobile-sw-logo">
+                            <div class="mobile-sw-text">
+                                <span class="mobile-sw-cat">EXP: AVANZADO</span>
+                                <p>La aplicacion es muy util para exportar diferentes tipos de videos con diferentes formatos y configuraciones no soportadas al exportar directamente en Premiere Pro</p>
+                            </div>
+                        </div>
                     </li>
-                    <li class="software-item sw-list-item" style="opacity: 0; transform: translateY(20px);"
+                    <li class="software-item sw-list-item" 
                         onclick="switchSoftware(this, 'video', 'Este editor de video fue con el que empece en el mundo de la edicion, sin embargo, carece o tiene limitantes en herramientas utiles como KeyFrames o correccion de color', '/images/filmora.png', '/images/filmora_fondo.png', 0.7, 'Wondershare Filmora', 'Avanzado')">
-                        <span class="sw-number">07</span><span class="sw-name">Wondershare Filmora</span>
+                        <div class="sw-item-header">
+                            <span class="sw-number">07</span><span class="sw-name">Wondershare Filmora</span>
+                        </div>
+                        <div class="mobile-sw-detail">
+                            <div class="mobile-sw-bg" style="background-image: url('/images/filmora_fondo.png');"></div>
+                            <img src="/images/filmora.png" class="mobile-sw-logo">
+                            <div class="mobile-sw-text">
+                                <span class="mobile-sw-cat">EXP: AVANZADO</span>
+                                <p>Este editor de video fue con el que empece en el mundo de la edicion, sin embargo, carece o tiene limitantes en herramientas utiles como KeyFrames o correccion de color</p>
+                            </div>
+                        </div>
                     </li>
-                    <li class="software-item sw-list-item" style="opacity: 0; transform: translateY(20px);"
+                    <li class="software-item sw-list-item" 
                         onclick="switchSoftware(this, 'video', 'El editor es util si se busca rapidez y agilidad pero no es mi favorito ya que tiene funciones muy basicas y no se puede profundizar en la edicion mas personalizada', '/images/capcut.webp', '/images/capcut_fondo.png', 0.8, 'Capcut', 'Moderado')">
-                        <span class="sw-number">08</span><span class="sw-name">Capcut</span>
+                        <div class="sw-item-header">
+                            <span class="sw-number">08</span><span class="sw-name">Capcut</span>
+                        </div>
+                        <div class="mobile-sw-detail">
+                            <div class="mobile-sw-bg" style="background-image: url('/images/capcut_fondo.png');"></div>
+                            <img src="/images/capcut.webp" class="mobile-sw-logo">
+                            <div class="mobile-sw-text">
+                                <span class="mobile-sw-cat">EXP: MODERADO</span>
+                                <p>El editor es util si se busca rapidez y agilidad pero no es mi favorito ya que tiene funciones muy basicas y no se puede profundizar en la edicion mas personalizada</p>
+                            </div>
+                        </div>
                     </li>
-                </ul>
+                </ul>l>
             </div>
         </div>
     </div>

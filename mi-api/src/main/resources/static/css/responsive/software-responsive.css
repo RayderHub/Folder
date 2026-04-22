@@ -1,0 +1,164 @@
+/* --- RESPONSIVE SOFTWARE SECTION (ACCORDION STYLE) --- */
+
+@media screen and (max-width: 992px) {
+    /* Ocultar el panel de información de escritorio */
+    .software-info-panel {
+        display: none !important;
+    }
+
+    /* Liberar el scroll en el contenedor principal */
+    .software-container {
+        height: auto !important;
+        min-height: 100vh !important;
+        overflow-y: visible !important;
+        position: relative !important;
+    }
+
+    .software-main {
+        display: block !important;
+        height: auto !important;
+        padding: 80px 10px 60px 10px !important;
+        overflow: visible !important;
+    }
+
+    .software-right-col {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .software-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .float-header {
+        font-size: 3rem !important;
+        letter-spacing: 5px;
+    }
+
+    .software-list {
+        padding: 0 !important;
+        list-style: none;
+    }
+
+    /* ITEM DEL ACORDEÓN */
+    .software-item {
+        margin-bottom: 10px !important;
+        background: rgba(20, 20, 20, 0.8) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        cursor: pointer;
+        border-radius: 5px;
+        transform: none !important; /* Quitar transformaciones de escritorio */
+        opacity: 1 !important;
+    }
+
+    .sw-item-header {
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.3s;
+    }
+
+    .software-item.active .sw-item-header {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 0, 0, 0.1);
+    }
+
+    .sw-number {
+        font-size: 0.9rem;
+        color: var(--red);
+        margin-right: 20px;
+        font-family: monospace;
+    }
+
+    .sw-name {
+        font-size: 1.2rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
+    /* DETALLE EXPANDIBLE */
+    .mobile-sw-detail {
+        display: none; /* Se activa con el .active */
+        position: relative;
+        padding: 40px 20px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        min-height: 450px;
+        justify-content: center;
+    }
+
+    .software-item.active .mobile-sw-detail {
+        display: flex;
+        animation: expandFade 0.6s ease forwards;
+    }
+
+    /* Fondo Inmersivo dentro del acordeón */
+    .mobile-sw-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        filter: brightness(0.3) blur(2px);
+        z-index: 0;
+    }
+
+    /* Icono flotante */
+    .mobile-sw-logo {
+        position: relative;
+        z-index: 1;
+        width: 120px;
+        height: auto;
+        margin-bottom: 30px;
+        filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.4));
+        animation: floatMobile 3s ease-in-out infinite;
+    }
+
+    /* Contenido de texto */
+    .mobile-sw-text {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+    }
+
+    .mobile-sw-cat {
+        display: block;
+        color: var(--red);
+        font-weight: bold;
+        font-size: 0.8rem;
+        letter-spacing: 3px;
+        margin-bottom: 15px;
+    }
+
+    .mobile-sw-text p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #ddd;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    @keyframes expandFade {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatMobile {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+    }
+}
+
+/* Ocultar elementos móviles en escritorio */
+@media screen and (min-width: 993px) {
+    .mobile-sw-detail, .sw-item-header {
+        display: none !important;
+    }
+}

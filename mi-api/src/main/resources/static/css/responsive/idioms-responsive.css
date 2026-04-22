@@ -1,0 +1,132 @@
+/* --- RESPONSIVE IDIOMS SECTION (MINIATURE VERSION) --- */
+
+@media screen and (max-width: 992px) {
+    #view-idioms {
+        height: auto !important;
+        min-height: 100vh;
+        padding: 80px 10px 40px 10px !important;
+        /* Más espacio arriba para no chocar con el menú */
+        overflow-x: hidden;
+    }
+
+    /* ESCALADO DE FRASES DE FONDO */
+    .despair-word {
+        font-size: 1.25rem !important;
+        white-space: nowrap !important;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 1) !important;
+    }
+
+    /* Reposicionamiento Orgánico */
+    .despair-word:nth-child(1) {
+        top: 12% !important;
+        left: 8% !important;
+    }
+
+    .despair-word:nth-child(2) {
+        top: 18% !important;
+        right: 12% !important;
+    }
+
+    .despair-word:nth-child(3) {
+        top: 35% !important;
+        left: 25% !important;
+    }
+
+    .despair-word:nth-child(4) {
+        top: 48% !important;
+        right: 5% !important;
+    }
+
+    .despair-word:nth-child(5) {
+        top: 40% !important;
+        right: 35% !important;
+    }
+
+    /* MONITOR CENTRAL (BAJADO Y CON SOMBRA RESTAURADA) */
+    .manga-monitor-ui {
+        width: 95% !important;
+        margin: 20px auto 0 auto !important;
+        padding: 15px 10px !important;
+        /* Padding más compacto */
+        background: rgba(0, 0, 0, 0.45) !important;
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
+    }
+
+    .monitor-top-bar {
+        margin-bottom: 15px !important;
+        /* ELIMINAMOS EL HUECO GIGANTE (era 60px) */
+        padding-bottom: 10px !important;
+    }
+
+    .dual-grid-centered {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px !important;
+        /* Espacio más cerrado entre bloques */
+        align-items: center;
+    }
+
+    .lang-item {
+        margin-bottom: 15px !important;
+        /* Menos separación entre idiomas */
+        border-left: 6px solid var(--red) !important;
+        padding-left: 15px !important;
+        transition: none !important;
+        text-align: center;
+    }
+
+    .lang-item:hover {
+        transform: none !important;
+        border-left-width: 6px !important;
+    }
+
+    .lang-main {
+        font-size: 2rem !important;
+        /* Un poco más pequeña para ahorrar espacio */
+        color: #fff !important;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+    }
+
+    .lang-detail {
+        font-size: 0.75rem !important;
+        letter-spacing: 2px !important;
+        color: #ddd !important;
+    }
+
+    .cert-display-skewed {
+        width: 100% !important;
+        max-width: 260px;
+        /* Un pelín más pequeña */
+        margin: 0 auto !important;
+        transform: rotate(-1deg) !important;
+        box-shadow: none !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    }
+
+    .cert-display-skewed img {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .btn-container {
+        margin-top: 10px !important;
+        /* Pegamos el botón a la imagen (era 60px) */
+    }
+
+    .monitor-action-btn {
+        padding: 10px 20px !important;
+        margin: 40px 0px;
+        font-size: 0.7rem !important;
+        background: rgba(230, 0, 0, 0.8) !important;
+        border: none !important;
+        transform: none !important;
+        box-shadow: 0 5px 15px rgba(230, 0, 0, 0.3) !important;
+    }
+
+    /* DECORACIONES */
+    .rec-indicator {
+        font-size: 0.7rem !important;
+    }
+}

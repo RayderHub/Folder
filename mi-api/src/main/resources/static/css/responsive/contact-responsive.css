@@ -1,0 +1,72 @@
+/* --- RESPONSIVE CONTACT SECTION --- */
+
+@media screen and (max-width: 992px) {
+    #view-contact {
+        height: auto !important;
+        min-height: 100vh;
+        padding: 80px 10px 40px 10px !important;
+        overflow-y: auto !important;
+        display: block !important;
+    }
+
+    /* CENTRAR VIDEO DE KANEKI */
+    .video-background {
+        left: 0 !important;
+        width: 100% !important;
+        filter: brightness(0.4) !important; /* Un poco más oscuro en móvil */
+    }
+
+    .contact-layout {
+        width: 100% !important;
+        max-width: 100% !important;
+        gap: 20px !important;
+    }
+
+    .contact-header .massive-title {
+        font-size: 2.5rem !important;
+        margin-bottom: 10px;
+    }
+
+    .contact-header .subtitle {
+        font-size: 0.9rem !important;
+        padding: 0 15px;
+        line-height: 1.4;
+    }
+
+    /* FORMULARIO MANGA */
+    .manga-form {
+        padding: 25px 20px !important;
+        width: 95% !important;
+        margin: 0 auto;
+        box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2) !important; /* Sombra más pequeña */
+        gap: 20px !important;
+    }
+
+    .label-manga {
+        font-size: 0.85rem !important;
+    }
+
+    input, textarea {
+        font-size: 0.95rem !important;
+        padding: 10px 5px !important;
+    }
+
+    /* BOTÓN DE ENVÍO */
+    .submit-btn-manga {
+        width: 100% !important;
+        padding: 18px !important;
+        font-size: 1.1rem !important;
+        margin-top: 5px;
+    }
+
+    /* MENSAJE DE ÉXITO */
+    .success-manga-box {
+        padding: 40px 20px !important;
+        width: 90% !important;
+        margin: 0 auto;
+    }
+
+    .success-manga-box h2 {
+        font-size: 2.5rem !important;
+    }
+}

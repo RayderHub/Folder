@@ -1,0 +1,87 @@
+/* --- RESPONSIVE SKILLS SECTION --- */
+
+@media screen and (max-width: 992px) {
+    #view-skills {
+        height: auto !important;
+        min-height: 100vh;
+        padding-top: 80px !important;
+        padding-bottom: 60px !important;
+    }
+
+    .skills-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 15px !important;
+    }
+
+    .skills-header {
+        margin-bottom: 40px !important;
+        text-align: center;
+    }
+
+    .skills-header .massive-title {
+        font-size: 2.8rem !important;
+    }
+
+    /* GRID A UNA COLUMNA */
+    .skills-grid {
+        grid-template-columns: 1fr !important;
+        gap: 25px !important;
+    }
+
+    /* TARJETAS ESTILO CRISTAL */
+    .skill-card {
+        background: rgba(10, 10, 10, 0.7) !important;
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 25px !important;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .skill-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: var(--red);
+    }
+
+    .card-num {
+        font-size: 0.9rem !important;
+        color: var(--red);
+        margin-bottom: 10px !important;
+    }
+
+    .card-title {
+        font-size: 1.4rem !important;
+        margin-bottom: 15px !important;
+        letter-spacing: 2px !important;
+    }
+
+    .skill-list {
+        padding-left: 0 !important;
+    }
+
+    .skill-list li {
+        font-size: 0.95rem !important;
+        margin-bottom: 12px !important;
+        padding-left: 15px !important;
+        position: relative;
+    }
+
+    .skill-list li::before {
+        content: "▪";
+        color: var(--red);
+        position: absolute;
+        left: 0;
+    }
+
+    /* AJUSTE DEL FONDO (PERSONAJE) */
+    .video-background {
+        object-position: 50% center !important; /* Centrar al personaje en móvil */
+        opacity: 0.5; /* Un poco más de presencia */
+    }
+}

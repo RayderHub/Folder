@@ -1,0 +1,101 @@
+/* --- RESPONSIVE EXPERIENCE SECTION (VERTICAL PANELS) --- */
+
+@media screen and (max-width: 992px) {
+    #view-experience {
+        height: auto !important;
+        min-height: 100vh;
+        overflow-y: auto !important;
+        padding-top: 60px !important;
+    }
+
+    /* ESCALADO DE LA FRASE "I WANT TO LIVE" (FIJA AL SCROLL) */
+    .ambient-quote {
+        position: fixed !important; /* SE QUEDA QUIETA */
+        width: 95% !important;
+        gap: 40px !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        z-index: 0 !important;
+    }
+
+    .ambient-quote span {
+        font-size: clamp(2.5rem, 15vw, 4.5rem) !important; /* Letras más pequeñas para móvil */
+        text-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .quote-line-1 {
+        align-self: center !important;
+        transform: rotate(-2deg) !important;
+    }
+
+    .quote-line-2 {
+        align-self: center !important;
+        transform: rotate(1deg) !important;
+        margin-right: 0 !important;
+    }
+
+    /* REDUCCIÓN Y FIJACIÓN DE PLUMAS */
+    .feathers-container {
+        position: fixed !important; /* PLUMAS SIEMPRE EN PANTALLA */
+        z-index: 1 !important;
+    }
+
+    .feather {
+        width: 120px !important; 
+        height: 120px !important;
+    }
+
+    /* TRANSFORMACIÓN DEL CARRUSEL A LISTA VERTICAL */
+    .experience-carousel-wrapper {
+        min-height: auto !important;
+        padding: 20px 0 !important;
+    }
+
+    .experience-carousel-container {
+        display: block !important; /* Quitamos el flex horizontal */
+    }
+
+    .experience-carousel {
+        display: flex !important;
+        flex-direction: column !important; /* APILADO VERTICAL */
+        overflow-x: hidden !important;
+        gap: 30px !important;
+        padding: 20px !important;
+        width: 100% !important;
+    }
+
+    /* TARJETAS ADAPTADAS */
+    .exp-card {
+        flex: 1 1 auto !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: auto !important;
+        padding: 30px 20px !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        border-radius: 8px !important;
+        margin-bottom: 10px;
+    }
+
+    .exp-role {
+        font-size: 1.4rem !important;
+        margin-bottom: 10px;
+    }
+
+    .exp-description {
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+    }
+
+    /* OCULTAR ELEMENTOS DE NAVEGACIÓN HORIZONTAL */
+    .carousel-nav, 
+    .carousel-pagination {
+        display: none !important;
+    }
+
+    #view-experience .section-title {
+        font-size: 2rem !important;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+}

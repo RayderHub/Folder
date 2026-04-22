@@ -60,14 +60,21 @@
 }
 
 /* --- COLUMNA DE ARCHIVOS (Miniaturas) --- */
-.video-thumbnails {
+.video-thumbnails-wrapper {
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
+    border-right: 1px solid rgba(255, 255, 255, 0.03);
+    overflow: hidden;
+}
+
+.video-thumbnails {
+    display: flex;
+    flex-direction: column;
     padding: 60px 20px;
     gap: 15px;
-    border-right: 1px solid rgba(255, 255, 255, 0.03);
+    overflow-y: auto;
 }
 
 .thumb-box {

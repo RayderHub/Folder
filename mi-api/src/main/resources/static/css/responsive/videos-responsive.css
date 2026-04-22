@@ -1,0 +1,131 @@
+/* --- RESPONSIVE VIDEOS SECTION (HEADER SLIDER) --- */
+
+@media screen and (max-width: 992px) {
+    #view-videos {
+        height: auto !important;
+        min-height: 100vh;
+        padding: 60px 0 40px 0 !important;
+    }
+
+    .videos-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+        width: 100% !important;
+    }
+
+    /* CONTENEDOR DEL SLIDER SUPERIOR (HEADER) */
+    .video-thumbnails-wrapper {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        display: flex !important;
+        align-items: center;
+        background: #0a0a0a;
+        padding: 10px 0;
+        border-bottom: 2px solid var(--red);
+        width: 100%;
+    }
+
+    .video-thumbnails {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        gap: 15px;
+        padding: 0 50px !important; /* Espacio para las flechas */
+        scrollbar-width: none; /* Ocultar scrollbar */
+        width: 100% !important;
+    }
+
+    .video-thumbnails::-webkit-scrollbar {
+        display: none;
+    }
+
+    .thumb-box {
+        flex: 0 0 auto !important;
+        padding: 10px 20px !important;
+        margin: 0 !important;
+        font-size: 0.9rem !important;
+        text-align: center;
+        white-space: nowrap;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+    }
+
+    .thumb-box.selected {
+        background: var(--red) !important;
+        color: white !important;
+        border-color: var(--red) !important;
+    }
+
+    /* FLECHAS DE NAVEGACIÓN */
+    .nav-arrow {
+        display: flex !important;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.8);
+        border: none;
+        color: white;
+        padding: 5px;
+        z-index: 101;
+        cursor: pointer;
+    }
+
+    .left-arrow { left: 5px; }
+    .right-arrow { right: 5px; }
+
+    /* LINEA ROJA Y MARCAS DE AGUA */
+    .manga-curved-line {
+        display: none !important; /* Estorba en móvil */
+    }
+
+    /* ÁREA DE CONTENIDO (VIDEOS) */
+    .video-display-area {
+        padding: 20px 10px !important;
+        width: 100% !important;
+    }
+
+    .video-info-header {
+        text-align: center;
+        margin-bottom: 30px !important;
+    }
+
+    .video-title {
+        font-size: 2.5rem !important;
+    }
+
+    /* COMPARATIVA VERTICAL */
+    .comparison-grid {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+    }
+
+    .comparison-block {
+        width: 100%;
+        max-width: 480px;
+        margin: 0 auto;
+    }
+
+    .label-manga {
+        font-size: 0.8rem !important;
+        margin-bottom: 10px !important;
+    }
+
+    .video-container {
+        aspect-ratio: 16 / 9;
+        height: auto !important;
+    }
+
+    .bg-text-watermark {
+        display: none !important;
+    }
+}
+
+/* Ocultar flechas en escritorio */
+.nav-arrow {
+    display: none;
+}

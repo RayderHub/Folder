@@ -1,0 +1,72 @@
+/* --- GLOBAL RESPONSIVE RULES (Apply to all pages) --- */
+
+@media screen and (max-width: 992px) {
+    /* Layout Reset */
+    .app-layout {
+        display: block !important;
+        position: relative;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+        min-height: 100vh;
+    }
+
+    /* Barra Lateral Móvil (Desplegable) */
+    .sidebar {
+        position: fixed !important;
+        top: 0 !important;
+        left: -100% !important; /* Oculto por defecto */
+        width: 80% !important;
+        height: 100vh !important;
+        z-index: 2000 !important;
+        transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        background: #0a0a0a !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        padding-top: 80px !important;
+    }
+
+    .sidebar.active {
+        left: 0 !important;
+    }
+
+    /* Botón Hamburguesa */
+    .mobile-nav-toggle {
+        display: flex !important;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 2001; /* Por encima de la sidebar */
+        width: 45px;
+        height: 45px;
+        background: var(--red);
+        border: none;
+        border-radius: 5px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+    }
+
+    /* Ajustes generales de secciones para móvil */
+    .view-panel {
+        padding: 60px 15px 40px 15px !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important; /* Habilitar scroll vertical */
+        height: auto !important;
+        min-height: 100vh !important;
+    }
+
+    .section-title {
+        font-size: 2.2rem !important;
+        text-align: center;
+    }
+}
+
+/* Ocultar toggle en escritorio */
+.mobile-nav-toggle {
+    display: none;
+}

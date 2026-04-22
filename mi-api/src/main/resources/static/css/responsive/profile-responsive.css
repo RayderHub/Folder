@@ -3,8 +3,14 @@
 @media screen and (max-width: 992px) {
     .hero-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
-        padding-top: 80px; /* Espacio para el menú móvil */
+        gap: 20px;
+        padding-top: 60px;
+        justify-items: center; /* Centrar contenido pero dejar espacio al arte */
+    }
+
+    /* Ajustar el video para que el personaje se vea mejor en pantallas estrechas */
+    .video-background {
+        object-position: 80% center !important; /* Desplaza el video para mostrar el lado derecho (Kaneki) */
     }
 
     .massive-title {
@@ -14,12 +20,15 @@
     }
 
     .description {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         text-align: center;
-        max-width: 100%;
+        max-width: 85%; /* Más estrecho para dejar ver los bordes del arte */
         border-left: none;
         border-bottom: 2px solid var(--red);
-        padding-bottom: 20px;
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.4) !important; /* Más transparente */
+        backdrop-filter: blur(5px);
+        margin-top: 10px;
     }
 
     .jp-vertical {
@@ -39,55 +48,4 @@
         flex-direction: column;
         align-items: center;
     }
-}
-
-/* --- SIDEBAR MOBILE (DROPDOWN STYLE) --- */
-@media screen and (max-width: 992px) {
-    .app-layout {
-        display: block; /* Quitamos el grid de dos columnas */
-    }
-
-    .sidebar {
-        position: fixed;
-        top: 0;
-        left: -100%; /* Oculto por defecto */
-        width: 80%;
-        height: 100vh;
-        z-index: 1000;
-        transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        background: #0a0a0a;
-        border-right: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .sidebar.active {
-        left: 0;
-    }
-
-    /* Botón Hamburguesa */
-    .mobile-nav-toggle {
-        display: flex !important;
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 1001;
-        width: 45px;
-        height: 45px;
-        background: var(--red);
-        border: none;
-        border-radius: 5px;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
-    }
-
-    .main-content {
-        margin-left: 0;
-        width: 100%;
-    }
-}
-
-/* Ocultar el toggle en escritorio */
-.mobile-nav-toggle {
-    display: none;
 }
