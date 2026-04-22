@@ -43,6 +43,26 @@
     }
 
     .hero-text-side {
+        padding: 30px 15px !important;
+        width: 95% !important;
+        max-width: 100% !important;
+        margin: 0 auto;
+    }
+    
+    .description {
+        font-size: 0.9rem !important;
+        line-height: 1.6;
+        word-break: break-word; /* Rompe el correo si es necesario */
+        overflow-wrap: break-word;
+    }
+
+    .description br {
+        display: block;
+        content: "";
+        margin-top: 10px;
+    }
+
+    .hero-text-side {
         padding: 20px;
         display: flex;
         flex-direction: column;
