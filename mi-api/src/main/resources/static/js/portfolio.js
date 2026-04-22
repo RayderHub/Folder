@@ -1,12 +1,88 @@
+// Configuración de Supabase (Evitar redeclaración si ya existe en videos.js)
+if (typeof SB_URL === 'undefined') {
+    window.SB_URL = 'https://cwjbpiuqvxiubctdyhsc.supabase.co';
+}
+if (typeof SB_KEY === 'undefined') {
+    window.SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3amJwaXVxdnhpdWJjdGR5aHNjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2MjQ0MTksImV4cCI6MjA5MjIwMDQxOX0.ICnz4xSdJ_l-XUX9xEVecG23lEeKtUisFPLQKS6M6nY';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Iniciar cargando los datos
-    fetchData();
+    // 1. Cargar Experiencia desde Supabase (Datos reales)
+    fetchExperience();
 
     // 2. Ejecutar la animación de "Abrir Cortinas" al cargar la página
     playInitialTransition();
 
     // 3. Interceptar clics en la navegación para la animación de "Cerrar Cortinas"
     setupLinkInterception();
+
+    // 4. Configurar menú móvil
+    setupMobileMenu();
+});
+
+function setupMobileMenu() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    const navLinks = document.querySelectorAll('.nav-btn');
+
+    if (menuToggle && sidebar) {
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+        // Cerrar menú al hacer clic en un enlace
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+            });
+        });
+    }
+}
+
+// Cargar Experiencia directamente de Supabase
+async function fetchExperience() {
+    const expCarousel = document.getElementById('experience-carousel');
+    if (!expCarousel) return;
+
+    try {
+        const response = await fetch(`${SB_URL}/rest/v1/experience?select=*&order=order_index.asc`, {
+            headers: {
+                'apikey': SB_KEY,
+                'Authorization': `Bearer ${SB_KEY}`
+            }
+        });
+        const experiences = await response.json();
+
+        if (experiences && experiences.length > 0) {
+            expCarousel.innerHTML = experiences.map((exp, index) => `
+                <div class="exp-card">
+                    <div class="exp-number">${(index + 1).toString().padStart(2, '0')}</div>
+                    <div class="exp-header">
+                        <h3 class="exp-role">${exp.puesto}</h3>
+                        <div class="exp-company">${exp.empresa}</div>
+                    </div>
+                    <div class="exp-body">
+                        <div class="exp-date">${exp.periodo} <span class="exp-duration">(${exp.duracion})</span></div>
+                        <p class="exp-description">${exp.descripcion || 'Sin descripción detallada.'}</p>
+                    </div>
+                    <div class="card-accent"></div>
+                </div>
+            `).join('');
+
+            // Inicializar funcionalidad del carrusel después de cargar datos
+            setupExperienceCarousel();
+        }
+    } catch (err) {
+        console.error("Error fetching experience from Supabase:", err);
+    }
+}
+
+// Arreglo para navegación atrás/adelante del navegador (BFCache)
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+        // Si la página viene de la caché, forzamos la apertura de cortinas
+        playInitialTransition();
+    }
 });
 
 // Animación de entrada al cargar cualquier página
@@ -21,10 +97,10 @@ function playInitialTransition() {
 
     // 1. Abrimos las cortinas deslizándolas hacia afuera
     gsap.to(topSlice, { translateY: "-105%", duration: 0.8, ease: "power4.inOut", delay: 0.3 });
-    gsap.to(bottomSlice, { 
-        translateY: "105%", 
-        duration: 0.8, 
-        ease: "power4.inOut", 
+    gsap.to(bottomSlice, {
+        translateY: "105%",
+        duration: 0.8,
+        ease: "power4.inOut",
         delay: 0.3,
         onComplete: () => {
             // 2. Aparecemos el panel principal suavemente
@@ -59,9 +135,9 @@ function setupLinkInterception() {
 
                 // Animamos el cierre de cortinas deslizándolas al centro
                 gsap.to(topSlice, { translateY: "0%", duration: 0.6, ease: "power4.inOut" });
-                gsap.to(bottomSlice, { 
-                    translateY: "0%", 
-                    duration: 0.6, 
+                gsap.to(bottomSlice, {
+                    translateY: "0%",
+                    duration: 0.6,
                     ease: "power4.inOut",
                     onComplete: () => {
                         window.location.href = destination;
@@ -70,52 +146,6 @@ function setupLinkInterception() {
             }
         });
     });
-}
-
-// Fallback para los datos de la API
-function fetchData() {
-    fetch('/api/portfolio/data')
-        .then(res => res.json())
-        .then(data => populateUI(data))
-        .catch(err => populateUI(getDummyData()));
-}
-
-function populateUI(data) {
-    const expList = document.getElementById('experience-list');
-    if (expList) {
-        data.experience.forEach(item => {
-            let li = document.createElement('li');
-            li.innerHTML = `<span>${item}</span>`;
-            expList.appendChild(li);
-        });
-    }
-
-    const vidList = document.getElementById('video-types-list');
-    if (vidList) {
-        data.videoTypes.forEach(item => {
-            let li = document.createElement('li');
-            li.innerHTML = `<span class="bullet">▪</span> ${item}`;
-            vidList.appendChild(li);
-        });
-    }
-
-    const stuList = document.getElementById('studies-list');
-    if (stuList) {
-        data.studies.forEach(item => {
-            let li = document.createElement('li');
-            li.innerText = item;
-            stuList.appendChild(li);
-        });
-    }
-
-    const couList = document.getElementById('courses-list');
-    if (couList) {
-        data.courses.forEach(item => {
-            let li = document.createElement('li');
-            li.innerText = item;
-            couList.appendChild(li);
-        });
-    }
 }
 
 // Configuración de la navegación dinámica (SPA)
@@ -150,31 +180,25 @@ function animateTransition(currentView, targetView, callback) {
     const topSlice = document.querySelector('.top-slice');
     const bottomSlice = document.querySelector('.bottom-slice');
 
-    // 1. Deslizamos cortinas al centro para tapar todo
     gsap.to(topSlice, { translateY: "0%", duration: 0.5, ease: "power4.inOut" });
-    gsap.to(bottomSlice, { 
-        translateY: "0%", 
-        duration: 0.5, 
+    gsap.to(bottomSlice, {
+        translateY: "0%",
+        duration: 0.5,
         ease: "power4.inOut",
         onComplete: () => {
-            // 2. Cambiamos las vistas detrás del telón
             currentView.classList.remove('active');
             targetView.classList.add('active');
 
-            // Aseguramos invisibilidad absoluta de la nueva sección
             gsap.set(targetView, { opacity: 0 });
             gsap.set(targetView.querySelectorAll('.stagger-enter'), { y: 50, opacity: 0 });
 
-            // 3. PAUSA DE SEGURIDAD (200ms) - Tiempo de renderizado tranquilo
             setTimeout(() => {
-                // 4. Abrir telón deslizando hacia afuera
                 gsap.to(topSlice, { translateY: "-105%", duration: 0.6, ease: "power4.out" });
-                gsap.to(bottomSlice, { 
-                    translateY: "105%", 
-                    duration: 0.6, 
+                gsap.to(bottomSlice, {
+                    translateY: "105%",
+                    duration: 0.6,
                     ease: "power4.out",
                     onComplete: () => {
-                        // 5. Animar entrada de los contenidos
                         animateViewIn(targetView);
                         callback();
                     }
@@ -195,29 +219,42 @@ function animateViewIn(view) {
     });
 }
 
-function getDummyData() {
-    return {
-        name: "Job de la Vega",
-        profession: "Editor de Video",
-        experience: [
-            "<strong>Editor Principal</strong> - Agencia Creativa Visual (2020-Presente)",
-            "<strong>Montajista Freelance</strong> - Creadores de Contenido (2018-2020)",
-            "<strong>Operador de Postproducción</strong> - Productora Local (2017)"
-        ],
-        videoTypes: [
-            "Formatos dinámicos (YouTube/Twitch/TikTok)",
-            "Montaje narrativo y cortometrajes",
-            "Estética Manga / AMV experimental",
-            "Colorización y Grading cinematográfico"
-        ],
-        studies: [
-            "Licenciatura en Comunicación Audiovisual",
-            "Diplomado Técnico en Artes y Cine"
-        ],
-        courses: [
-            "Adobe Master Collection: Postproducción",
-            "DaVinci Resolve - Advanced Color Grading",
-            "Narrativa Visual Avanzada"
-        ]
-    };
+function setupExperienceCarousel() {
+    const carousel = document.getElementById('experience-carousel');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const pagination = document.querySelector('.carousel-pagination');
+
+    if (!carousel || !pagination) return;
+
+    const cards = carousel.querySelectorAll('.exp-card');
+
+    pagination.innerHTML = '';
+    cards.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = `dot ${i === 0 ? 'active' : ''}`;
+        dot.addEventListener('click', () => {
+            carousel.scrollTo({
+                left: cards[i].offsetLeft - carousel.offsetLeft,
+                behavior: 'smooth'
+            });
+        });
+        pagination.appendChild(dot);
+    });
+
+    carousel.addEventListener('scroll', () => {
+        const index = Math.round(carousel.scrollLeft / (cards[0].offsetWidth + 30));
+        const dots = pagination.querySelectorAll('.dot');
+        dots.forEach((dot, i) => {
+            if (dots[i]) dot.classList.toggle('active', i === index);
+        });
+    });
+
+    if (prevBtn) prevBtn.addEventListener('click', () => {
+        carousel.scrollBy({ left: -cards[0].offsetWidth, behavior: 'smooth' });
+    });
+
+    if (nextBtn) nextBtn.addEventListener('click', () => {
+        carousel.scrollBy({ left: cards[0].offsetWidth, behavior: 'smooth' });
+    });
 }

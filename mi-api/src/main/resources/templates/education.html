@@ -1,20 +1,38 @@
+<link rel="stylesheet" th:href="@{/css/sections/education.css}">
+
 <section id="view-education" class="view-panel active">
-    <div class="section-header stagger-enter">
-        <h2 class="section-title">EDUCACIÓN</h2>
-        <div class="jp-decoration">教育</div>
+    <!-- Fondo dinámico de la UTEQ -->
+    <div class="edu-background">
+        <div class="edu-slide"></div>
+        <div class="edu-slide"></div>
+        <div class="edu-slide"></div>
+        <div class="edu-slide"></div>
+        <div class="edu-overlay"></div>
     </div>
-    <div class="dual-grid mt-40">
-        <div class="grid-col stagger-enter">
-            <h3 class="subtitle">FORMACIÓN ACADÉMICA</h3>
-            <ul id="studies-list" class="minimal-list border-list mt-20">
-                <!-- Cargado por JS/API -->
-            </ul>
+
+    <div class="edu-content">
+        <div class="section-header stagger-enter">
+            <h2 class="section-title">EDUCACIÓN</h2>
         </div>
-        <div class="grid-col stagger-enter">
-            <h3 class="subtitle">CURSOS Y CERTIFICADOS</h3>
-            <ul id="courses-list" class="minimal-list border-list mt-20">
-                <!-- Cargado por JS/API -->
-            </ul>
+
+        <div class="dual-grid mt-40">
+            <div class="grid-col stagger-enter">
+                <h3 class="subtitle">FORMACIÓN ACADÉMICA</h3>
+                <ul id="studies-list" class="minimal-list border-list mt-20">
+                    <li>Tecnico superior en Desarrollo de Software Multiplataforma | 2023-2025</li>
+                    <li>Ingenieria en Gestion y Desarrollo de Software | 2025-Actualidad</li>
+                </ul>
+            </div>
+            <div class="grid-col stagger-enter">
+                <h3 class="subtitle">CURSOS Y CERTIFICADOS</h3>
+                <ul id="courses-list" class="minimal-list border-list mt-20">
+                    <li>Data Networks Certificate</li>
+                    <li>Cisco Certified in Networking</li>
+                    <li>Introduction to Networks</li>
+                    <li>Partner: NDG Linux Essentials</li>
+                    <li>British council B2 English Level Certificate</li>
+                </ul>
+            </div>
         </div>
     </div>
 </section>

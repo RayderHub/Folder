@@ -32,12 +32,16 @@
 
 .phrase-word {
     font-family: 'Permanent Marker', cursive;
-    font-size: 9rem; /* Un poco más grandes */
-    color: rgba(255, 255, 255, 0.12); /* Subimos de 0.05 a 0.12 */
-    text-shadow: 0 0 50px rgba(255, 255, 255, 0.05); /* Resplandor sutil */
+    font-size: 9rem;
+    /* Un poco más grandes */
+    color: rgba(255, 255, 255, 0.12);
+    /* Subimos de 0.05 a 0.12 */
+    text-shadow: 0 0 50px rgba(255, 255, 255, 0.05);
+    /* Resplandor sutil */
     transform: rotate(var(--tilt));
     line-height: 0.8;
-    filter: blur(0.5px); /* Menos desenfoque para que se lean mejor */
+    filter: blur(0.5px);
+    /* Menos desenfoque para que se lean mejor */
     transition: all 0.5s ease;
 }
 
@@ -123,7 +127,7 @@
 }
 
 .manga-curved-line::after {
-    content: '01001011001';
+    content: '1000-7=?';
     position: absolute;
     top: 50%;
     left: -15px;
@@ -255,8 +259,10 @@
 /* Modo Cine */
 .cinema-mode-overlay {
     position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.98);
     backdrop-filter: blur(20px);
     display: none;
@@ -274,14 +280,32 @@
 }
 
 @keyframes atmosphericFlicker {
-    0%, 100% { opacity: 0.8; }
-    50% { opacity: 0.5; }
-    52% { opacity: 1; }
-    54% { opacity: 0.6; }
+
+    0%,
+    100% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    52% {
+        opacity: 1;
+    }
+
+    54% {
+        opacity: 0.6;
+    }
 }
 
 /* Responsivo */
 @media (max-height: 800px) {
-    .video-info-header h1 { font-size: 3rem; }
-    .comparison-grid { gap: 20px; }
+    .video-info-header h1 {
+        font-size: 3rem;
+    }
+
+    .comparison-grid {
+        gap: 20px;
+    }
 }

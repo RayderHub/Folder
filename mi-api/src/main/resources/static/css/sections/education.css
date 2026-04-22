@@ -1,0 +1,128 @@
+#view-education {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    background: #000;
+    /* Fondo base oscuro */
+}
+
+.section-title {
+    font-family: 'Kaushan Script', cursive;
+    padding-bottom: 20px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+}
+
+/* Contenedor del Slideshow */
+.edu-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.edu-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    filter: blur(4px) brightness(0.3);
+    /* Desenfoque y oscuridad para legibilidad */
+    animation: educationFade 24s infinite;
+}
+
+/* Tiempos de las imágenes (6s cada una) */
+.edu-slide:nth-child(1) {
+    background-image: url('/images/uteq.jpeg');
+    animation-delay: 0s;
+}
+
+.edu-slide:nth-child(2) {
+    background-image: url('/images/uteq2.jpg');
+    animation-delay: 6s;
+}
+
+.edu-slide:nth-child(3) {
+    background-image: url('/images/uteq3.jpeg');
+    animation-delay: 12s;
+}
+
+.edu-slide:nth-child(4) {
+    background-image: url('/images/uteq4.jpg');
+    animation-delay: 18s;
+}
+
+@keyframes educationFade {
+    0% {
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 0.4;
+    }
+
+    /* Opacidad máxima del 40% para no distraer */
+    25% {
+        opacity: 0.4;
+    }
+
+    30% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Capa de grano/textura cinemática */
+.edu-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 20%, rgba(0, 0, 0, 0.4) 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Contenido por encima de las imágenes */
+.edu-content {
+    position: relative;
+    z-index: 2;
+    padding: 40px;
+    color: #fff;
+}
+
+/* Ajustes de listas para que resalten */
+.minimal-list li {
+    background: rgba(255, 255, 255, 0.05);
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 4px;
+    border-left: 3px solid var(--red);
+    transition: all 0.3s ease;
+}
+
+.minimal-list li:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(10px);
+}
+
+.subtitle {
+    color: var(--red);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}

@@ -1,12 +1,54 @@
 <section id="view-experience" class="view-panel active">
+    <!-- Frase Ambiental (Detrás de las plumas) -->
+    <div class="ambient-quote">
+        <span class="quote-line-1">"I WANT</span>
+        <span class="quote-line-2">TO LIVE"</span>
+    </div>
+
+    <!-- Fondo de Plumas Negras -->
+    <div class="feathers-container">
+        <div class="feather f1"></div>
+        <div class="feather f2"></div>
+        <div class="feather f3"></div>
+        <div class="feather f1"></div>
+        <div class="feather f2"></div>
+        <div class="feather f3"></div>
+        <div class="feather f1"></div>
+        <div class="feather f2"></div>
+        <div class="feather f3"></div>
+        <div class="feather f1"></div>
+        <div class="feather f2"></div>
+        <div class="feather f3"></div>
+    </div>
+
+    <!-- Sombra ligera de abajo hacia arriba -->
+    <div class="bottom-shadow"></div>
+
     <div class="section-header stagger-enter">
         <h2 class="section-title">EXPERIENCIA LABORAL</h2>
-        <div class="jp-decoration">職歴</div>
     </div>
-    <div class="experience-content mt-40 stagger-enter">
-        <div class="timeline-line"></div>
-        <ul id="experience-list" class="timeline-list">
-            <!-- Estos datos se cargan vía API por el JS, pero dejamos la estructura lista -->
-        </ul>
+
+    <div class="experience-carousel-wrapper stagger-enter">
+        <div class="experience-carousel-container">
+            <div class="carousel-nav prev-btn">
+                <svg viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                </svg>
+            </div>
+
+            <div id="experience-carousel" class="experience-carousel">
+                <!-- Cards will be injected here -->
+            </div>
+
+            <div class="carousel-nav next-btn">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div class="carousel-pagination stagger-enter">
+        <!-- Dots will be injected here -->
     </div>
 </section>
